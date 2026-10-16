@@ -120,3 +120,29 @@ The trade-study results went into the team's 10/14 weekly report.
 - Wrote these docs for handoff.
 - Checked reproducibility: `validate.py` run from the tarballs reproduced `results/raw/validate.json`
   exactly.
+
+## 2026-10-16: Design-space exploration and compiler review
+- **Model.** Extended `vliw_model.make_cfg()` with a knob for every structural option: latencies,
+  shared units, RF ports, 2/4/8 word or XOR banks, cache size/penalty, fetch bandwidth, line-straddle
+  policy per header, predication, a greedy-packetizer scheduler and a software-pipelining bound.
+  - Defaults reproduce the 10-13 sweep and the RTL validation byte for byte.
+  - 31 unit tests in `mpact_run/tests/`.
+- **Ran** a 222-config full factorial, 106 one-knob changes around SB1 and the SB2 candidate, and a
+  36-config compiler study (`dse.py`). Results: [`07`](07-design-space-exploration.md).
+- **Found:**
+  - SB1 bundles average 1.5–2.3 ops of 4; 2 lanes cost only 6% on SB1.
+  - Banks matter as much as ports: 1 LS + 1 LO is 1.27× with 2 banks, 1.33× with 4, 1.44×
+    conflict-free; XOR hashing doesn't help at 2 banks.
+  - 8-wide pays only with four conflict-free memory ops.
+  - Line-straddle fallback costs 9–19%; ≥ 16 B/cycle fetch is enough.
+  - Perfect caches are worth +10–12%.
+  - FP must stay in worker lanes (−15% otherwise).
+  - Predication: 0.
+- **Read Leo's compiler** (`leomarek/llvm-project` `codex/starbug-vliw`). Found that `starbug-vliw`
+  uses `NoSchedModel`, so the machine pipeliner the pipeline enables never runs. See
+  [`08`](08-compiler.md).
+  - Model: latency-aware scheduling is worth up to +27%, modulo scheduling a further +7–17%,
+    alias information +12–20%.
+- **`bundle_check.py`** now enforces lane rules. It found a masked RAW in `arm_bitreversal_16` and a
+  slot-1 branch in `arm_dct4_f32` (hand-written kernels; latent, not affecting measured results).
+

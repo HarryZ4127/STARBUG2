@@ -1,0 +1,17 @@
+factor,level,n,geomean,best
+width,8,60,1.3496,1.8088
+width,6,60,1.3468,1.8016
+width,4,60,1.3244,1.6836
+width,2,42,1.0564,1.1836
+memory,2LS+2LO,54,1.4383,1.8088
+memory,2LS,72,1.3023,1.5511
+memory,1LS+1LO,72,1.2369,1.4652
+memory,1LS,24,1.045,1.0965
+banks,ideal,66,1.4433,1.8088
+banks,4 banks,66,1.2968,1.4827
+banks,2 banks,66,1.21,1.3436
+branch,gshare,74,1.3089,1.8088
+branch,none,74,1.2477,1.774
+branch,btfn,74,1.2878,1.774
+zol,ZOL,111,1.3081,1.8088
+zol,no ZOL,111,1.2549,1.7587

@@ -17,10 +17,16 @@ Both feed the same in-order, interlocked, lock-step pipeline model:
     (Wally: LoadStallD / MDUStallD / FPUStallD stall a dependent op directly behind);
   - taken branches and jumps cost `branch_penalty` cycles (2: starbug config has no predictor);
   - two memory ops in one bundle that hit the same bank (word-interleaved) cost one extra cycle.
+make_cfg() also models (all off by default, so CONFIGS reproduce the 2026-10-13 study): per-class
+latencies, shared mul/FP units, register-file ports, 2/4/8 word or XOR-hashed banks, cache size,
+fetch bandwidth, line-straddling bundles under each header encoding, creg/z if-conversion, a greedy
+packetizer like the LLVM one, and software pipelining as a modulo-schedule bound (modulo_ii).
+Tests: tests/test_vliw_model.py. Sweeps over all of it: dse.py.
 """
 import bisect
 import collections
 import json
+import math
 import re
 import subprocess
 import sys
@@ -272,17 +278,62 @@ def basic_blocks(pcs, ops):
 # ---------------------------------------------------------------- machine configurations
 def make_cfg(name, width=4, mem_lanes=(0,), load_lanes=(), max_mem=1, max_stores=1,
              branch_lanes=(0,), banks=0, branch="none", zol=False, worker=WORKER, penalty=2,
-             caches=True, miss=18, writeback=16):
+             caches=True, miss=18, writeback=16, lat=None, mul_units=None, fp_units=None,
+             max_reads=None, max_writes=None, bank_hash="word", icache_kb=16, dcache_kb=16,
+             line=64, fetch_bytes=0, fetch_queue=0, cross="ideal", header="16-bit hint (SB1)",
+             predicate=False, sched="list", swp=False):
     """mem_lanes: lanes that can load and store; load_lanes: extra load-only lanes;
-    banks: 0 = ideal (no conflicts), 2 = word-interleaved 2-bank memory;
+    banks: 0 = ideal (no conflicts), 2/4/8 = interleaved banks;
     branch: none (every taken transfer pays `penalty`: the starbug config has no predictor),
             gshare (Wally rv32gc front end), btfn (static backward-taken/forward-not-taken);
     zol: zero-overhead loops (backward loop branches are free and take no slot);
-    caches: model the 16 KB I$/D$, blocking, `miss` cycles per line fill (+`writeback` if dirty)."""
+    caches: model the I$/D$ (`icache_kb`/`dcache_kb`, 4-way, `line` bytes), blocking, `miss`
+            cycles per line fill (+`writeback` if dirty).
+    The remaining knobs default to "unlimited / as before", so SB1 and CONFIGS are unchanged:
+    lat:         per-class latency overrides, e.g. {"load": 3}
+    mul_units:   max mul/div ops per bundle (Wally's MDU is shared across lanes); None = no limit
+    fp_units:    max FP ops per bundle; None = no limit
+    max_reads:   max distinct registers read per bundle, per register file; None = no limit
+    max_writes:  max registers written per bundle, per register file; None = no limit
+    bank_hash:   "word" (bank = word address mod banks) or "xor" (bank = XOR-fold of the
+                 word address, i.e. the scrambled mapping Rice proposed)
+    fetch_bytes: I-fetch bytes per cycle into a queue of `fetch_queue` bytes (default
+                 2 x fetch_bytes); a bundle waits until its bytes are in the queue; 0 = unlimited
+    cross:       a bundle (with `header` bytes) that straddles a `line`-byte I$ line:
+                 "ideal" = no cost, "stall" = +1 cycle, "scalar" = its ops issue one per cycle
+                 (SB1 fetch rule)
+    header:      key of HEADERS, used by `cross` and `fetch_bytes`
+    predicate:   if-convert short forward hammocks (creg/z predication): no branch penalty,
+                 and a skipped body still takes its issue slots
+    sched:       "list" = latency-aware critical-path list scheduler (default);
+                 "packetizer" = greedy in-order packet filler that ignores latency, like the
+                 current LLVM StarbugVLIWPacketizer
+    swp:         software-pipeline single-block loops: steady-state iterations cost the
+                 modulo-schedule lower bound MII = max(ResMII, RecMII) instead of the block."""
+    L = dict(LAT)
+    L.update(lat or {})
     return dict(name=name, width=width, mem_lanes=tuple(mem_lanes), load_lanes=tuple(load_lanes),
                 max_mem=max_mem, max_stores=max_stores, branch_lanes=tuple(branch_lanes),
                 banks=banks, branch=branch, zol=zol, worker=set(worker), penalty=penalty,
-                caches=caches, miss=miss, writeback=writeback)
+                caches=caches, miss=miss, writeback=writeback, lat=L, mul_units=mul_units,
+                fp_units=fp_units, max_reads=max_reads, max_writes=max_writes,
+                bank_hash=bank_hash, icache_kb=icache_kb, dcache_kb=dcache_kb, line=line,
+                fetch_bytes=fetch_bytes, fetch_queue=fetch_queue or 2 * fetch_bytes, cross=cross,
+                header=header, predicate=predicate, sched=sched, swp=swp)
+
+
+SCHED_KEYS = ("width", "mem_lanes", "load_lanes", "max_mem", "max_stores", "branch_lanes", "zol",
+              "mul_units", "fp_units", "max_reads", "max_writes", "sched")
+
+
+def sched_key(cfg):
+    """Everything schedule_block() depends on, so equal keys can share one schedule."""
+    return tuple(cfg[k] for k in SCHED_KEYS) + (tuple(sorted(cfg["worker"])),
+                                                 tuple(sorted(cfg["lat"].items())))
+
+
+MUL_CLS = ("mul", "div")
+FP_CLS = ("fp", "fdiv", "fcvti", "fmvx")
 
 
 def lanes_for(op, cfg):
@@ -306,6 +357,18 @@ def fits(bundle_ops, cfg):
         return False
     if sum(o.is_ctrl for o in bundle_ops) > 1:
         return False
+    if cfg.get("mul_units") is not None and sum(o.cls in MUL_CLS for o in bundle_ops) > cfg["mul_units"]:
+        return False
+    if cfg.get("fp_units") is not None and sum(o.cls in FP_CLS for o in bundle_ops) > cfg["fp_units"]:
+        return False
+    if cfg.get("max_reads") is not None or cfg.get("max_writes") is not None:
+        for f in "xf":
+            rd = {r for o in bundle_ops for r in o.src if r[0] == f}
+            wr = [r for o in bundle_ops for r in o.dst if r[0] == f]
+            if cfg.get("max_reads") is not None and len(rd) > cfg["max_reads"]:
+                return False
+            if cfg.get("max_writes") is not None and len(wr) > cfg["max_writes"]:
+                return False
     caps = sorted((lanes_for(o, cfg) for o in bundle_ops), key=len)
     used = {}
 
@@ -340,6 +403,13 @@ def independent_pairs(seq, ops, dyn_instances, maddr, msize):
 
 
 def schedule_block(seq, ops, cfg, indep):
+    """Pack one basic block into bundles. sched="list": each cycle, fill the bundle with ready
+    ops (all predecessors' latencies elapsed) in critical-path order. sched="packetizer": an op
+    may join once its producers sit in an earlier bundle, whatever their latency, preferring a
+    memory op as the packet anchor and then program order within a 64-op window -- the policy
+    of the LLVM StarbugVLIWPacketizer. Its latency stalls then show up at run time."""
+    LATC = cfg.get("lat", LAT)
+    greedy = cfg.get("sched", "list") == "packetizer"
     body = [k for k, pc in enumerate(seq) if ops[pc].cls != "nop"]
     if cfg["zol"]:
         last = ops[seq[-1]]
@@ -353,7 +423,7 @@ def schedule_block(seq, ops, cfg, indep):
         for r in o.src:
             if r in last_w:
                 i = last_w[r]
-                preds[j].append((i, LAT[O[i].cls]))
+                preds[j].append((i, LATC[O[i].cls]))
         for r in o.dst:
             if r in last_w:
                 preds[j].append((last_w[r], 1))
@@ -382,7 +452,7 @@ def schedule_block(seq, ops, cfg, indep):
             succs[i].append((j, d))
     height = [0] * n
     for i in range(n - 1, -1, -1):
-        height[i] = max([LAT[O[i].cls]] + [d + height[j] for (j, d) in succs[i]])
+        height[i] = max([LATC[O[i].cls]] + [d + height[j] for (j, d) in succs[i]])
     cyc = [None] * n
     remaining = set(range(n))
     bundles, cycle = [], 0
@@ -391,9 +461,17 @@ def schedule_block(seq, ops, cfg, indep):
         progress = True
         while progress:
             progress = False
-            cand = [j for j in remaining if all(cyc[i] is not None and cyc[i] + d <= cycle
-                                                for (i, d) in preds[j])]
-            cand.sort(key=lambda j: (-height[j], j))
+            if not remaining:
+                break
+            if greedy:
+                lo = min(remaining)
+                cand = [j for j in remaining if j < lo + 64 and all(
+                    cyc[i] is not None and cyc[i] + min(d, 1) <= cycle for (i, d) in preds[j])]
+                cand.sort(key=lambda j: (not O[j].is_mem, j))
+            else:
+                cand = [j for j in remaining if all(cyc[i] is not None and cyc[i] + d <= cycle
+                                                    for (i, d) in preds[j])]
+                cand.sort(key=lambda j: (-height[j], j))
             for j in cand:
                 if fits([O[k] for k in chosen] + [O[j]], cfg):
                     chosen.append(j)
@@ -438,82 +516,180 @@ def as_written_blocks(blocks, ops, honor_hints=True, line=64):
 
 
 # ---------------------------------------------------------------- dynamic timing
-def simulate(blocks, dyn, sched, ops, maddr, cfg, warm=()):
+def bank_of(word, banks, how="word"):
+    """Bank of a word address. "word": low bits (classic interleaving). "xor": XOR-fold all
+    log2(banks)-bit groups of the word address, so power-of-two strides spread across banks."""
+    if how == "word":
+        return word % banks
+    k, b = banks.bit_length() - 1, 0
+    while word:
+        b ^= word & (banks - 1)
+        word >>= k
+    return b
+
+
+def bundle_layout(blocks, sched, ops, header, line=64):
+    """Lay the scheduled blocks out contiguously in address order (as line_crossings does) and
+    return {lead: [(bytes, straddles_a_line), ...]} per bundle."""
+    hdr = HEADERS[header] if isinstance(header, str) else header
+    addr, out = 0x80000000, {}
+    for lead in sorted(sched):
+        seq = blocks[lead]
+        rows = []
+        for b in sched[lead]:
+            nbytes = sum(ops[seq[k]].size for k in b) + (hdr(len(b)) if len(b) > 1 else 0)
+            rows.append((nbytes, len(b) > 1 and addr // line != (addr + nbytes - 1) // line))
+            addr += nbytes
+        out[lead] = rows
+    return out
+
+
+def simulate(blocks, dyn, sched, ops, maddr, cfg, warm=(), hammocks=None, ii=None):
+    """Time the dynamic block sequence `dyn` with the bundles in `sched`.
+    hammocks: {lead: skipped op count} for cfg["predicate"]; ii: {lead: MII} for cfg["swp"]."""
     ready = {}
     t, earliest = -1, 0
-    nbundles = conflicts = penalties = imiss = dmiss = 0
-    banks = cfg["banks"]
+    nbundles = conflicts = penalties = imiss = dmiss = crossings = fetch_stalls = 0
+    banks, bhash = cfg["banks"], cfg.get("bank_hash", "word")
     P = cfg["penalty"]
+    LATC = cfg.get("lat", LAT)
+    W = cfg["width"]
     pred = Predictor() if cfg["branch"] == "gshare" else None
     ic = dc = None
+    lb = cfg.get("line", 64).bit_length() - 1
     if cfg["caches"]:
-        ic, dc = Cache(), Cache()
+        ic = Cache(cfg.get("icache_kb", 16) * 1024, 4, 1 << lb)
+        dc = Cache(cfg.get("dcache_kb", 16) * 1024, 4, 1 << lb)
         for kind, a in warm:
             (ic if kind == "i" else dc).access(a, kind == "s")
     MISS, WB = cfg["miss"], cfg["writeback"]
+    cross = cfg.get("cross", "ideal")
+    FB = cfg.get("fetch_bytes", 0)
+    FQ = cfg.get("fetch_queue", 0) or 2 * FB
+    lay = None
+    if cross != "ideal" or FB:
+        lay = bundle_layout(blocks, sched, ops, cfg.get("header", "16-bit hint (SB1)"), 1 << lb)
+    fq_level, fq_t = FQ, 0
+    predicate = bool(cfg.get("predicate")) and hammocks is not None
+    swp = bool(cfg.get("swp")) and ii is not None
     last_line = -1
-    # precompute per block: per bundle (src regs, [(dst, lat)], mem op offsets, fetch lines)
+    # precompute per block: per bundle (src regs, [(dst, lat)], mem op offsets, fetch lines,
+    # bytes, extra issue cycles from a line straddle)
     pre = {}
     for lead, bl in sched.items():
         seq = blocks[lead]
         rows = []
-        for b in bl:
+        for n, b in enumerate(bl):
             src = set()
             dst = []
             mem = []
             for k in b:
                 o = ops[seq[k]]
                 src.update(o.src)
-                dst += [(r, LAT[o.cls], o.is_mem) for r in o.dst]
+                dst += [(r, LATC[o.cls], o.is_mem) for r in o.dst]
                 if o.is_mem:
                     mem.append((k, o.cls == "store"))
-            lines = tuple(sorted({seq[k] >> 6 for k in b}))
-            rows.append((tuple(src), tuple(dst), tuple(mem), lines))
+            lines = tuple(sorted({seq[k] >> lb for k in b}))
+            nbytes, xc = lay[lead][n] if lay is not None else (0, 0)
+            if not xc or cross == "ideal":
+                xc = 0
+            elif cross == "stall":
+                xc = 1
+            else:  # "scalar": the fetch unit declines the bundle and its ops issue one by one
+                xc = len(b) - 1
+            rows.append((tuple(src), tuple(dst), tuple(mem), lines, nbytes, xc))
         last = ops[seq[-1]]
         pre[lead] = (rows, last)
+    prev_lead = None
     for (lead, start, taken, nxt) in dyn:
         rows, last = pre[lead]
-        for (src, dst, mem, lines) in rows:
+        if swp and lead == prev_lead and lead in ii:
+            # Steady-state iteration of a software-pipelined loop: it issues MII cycles after
+            # the previous one (never worse than the plain schedule). Caches and bank
+            # conflicts still apply; values are taken as ready when the iteration ends.
             ti = t + 1
             if earliest > ti:
                 ti = earliest
-            if ic is not None:
-                for ln in lines:
-                    if ln != last_line:
-                        if not ic.access(ln << 6)[0]:
-                            ti += MISS
-                            imiss += 1
-                        last_line = ln
-            for r in src:
-                v = ready.get(r, 0)
-                if v > ti:
-                    ti = v
             extra = 0
-            if dc is not None:
-                for (k, st) in mem:
-                    a = maddr[start + k]
-                    if a >= 0x80000000:
-                        hit, dirty = dc.access(a, st)
-                        if not hit:
-                            extra += MISS + (WB if dirty else 0)
-                            dmiss += 1
-            if banks and len(mem) > 1:
-                seen, bc = {}, 0
-                for (k, _) in mem:
-                    w = maddr[start + k] >> 2
-                    bk = w % banks
-                    if bk in seen and seen[bk] != w:
-                        bc += 1
-                    seen.setdefault(bk, w)
-                conflicts += bc
-                extra += bc
-            for (r, lat, is_mem) in dst:
-                ready[r] = ti + lat + (extra if is_mem else 0)
-            t = ti + extra
-            nbundles += 1
+            for (src, dst, mem, lines, nbytes, xc) in rows:
+                if ic is not None:
+                    for ln in lines:
+                        if ln != last_line:
+                            if not ic.access(ln << lb)[0]:
+                                extra += MISS
+                                imiss += 1
+                            last_line = ln
+                if dc is not None:
+                    for (k, st) in mem:
+                        a = maddr[start + k]
+                        if a >= 0x80000000:
+                            hit, dirty = dc.access(a, st)
+                            if not hit:
+                                extra += MISS + (WB if dirty else 0)
+                                dmiss += 1
+                if banks and len(mem) > 1:
+                    bc = _bank_conflicts(mem, maddr, start, banks, bhash)
+                    conflicts += bc
+                    extra += bc
+            cost = min(ii[lead], len(rows))
+            t = ti + cost - 1 + extra
+            for (src, dst, mem, lines, nbytes, xc) in rows:
+                for (r, lat, is_mem) in dst:
+                    ready[r] = t + 1
+            nbundles += cost
+        else:
+            for (src, dst, mem, lines, nbytes, xc) in rows:
+                ti = t + 1
+                if earliest > ti:
+                    ti = earliest
+                if ic is not None:
+                    for ln in lines:
+                        if ln != last_line:
+                            if not ic.access(ln << lb)[0]:
+                                ti += MISS
+                                imiss += 1
+                            last_line = ln
+                for r in src:
+                    v = ready.get(r, 0)
+                    if v > ti:
+                        ti = v
+                if FB:
+                    fq_level = min(FQ, fq_level + FB * (ti - fq_t))
+                    if fq_level < nbytes:
+                        w = -(-(nbytes - fq_level) // FB)
+                        ti += w
+                        fetch_stalls += w
+                        fq_level += w * FB
+                    fq_level -= nbytes
+                    fq_t = ti
+                extra = 0
+                if dc is not None:
+                    for (k, st) in mem:
+                        a = maddr[start + k]
+                        if a >= 0x80000000:
+                            hit, dirty = dc.access(a, st)
+                            if not hit:
+                                extra += MISS + (WB if dirty else 0)
+                                dmiss += 1
+                if banks and len(mem) > 1:
+                    bc = _bank_conflicts(mem, maddr, start, banks, bhash)
+                    conflicts += bc
+                    extra += bc
+                if xc:
+                    crossings += 1
+                    extra += xc
+                for (r, lat, is_mem) in dst:
+                    ready[r] = ti + lat + (extra if is_mem else 0)
+                t = ti + extra
+                nbundles += 1
+        prev_lead = lead
         if last.is_ctrl:
             if cfg["zol"] and last.cls == "branch" and _is_backward(last):
                 pay = False
+            elif predicate and last.cls == "branch" and lead in hammocks:
+                pay = False  # if-converted: the condition becomes a predicate register
+                if taken:  # the predicated-off body still occupies its issue slots
+                    t += -(-hammocks[lead] // W)
             elif pred is not None:
                 pay = pred.mispredicted(last, taken, nxt)
             elif last.cls == "jump":
@@ -525,8 +701,26 @@ def simulate(blocks, dyn, sched, ops, maddr, cfg, warm=()):
             if pay:
                 earliest = t + 1 + P
                 penalties += 1
-    return dict(cycles=t + 1, bundles=nbundles, bank_conflicts=conflicts, branch_penalties=penalties,
-                icache_misses=imiss, dcache_misses=dmiss)
+                if FB:  # the fetch queue is flushed and refills during the penalty
+                    fq_level, fq_t = 0, t + 1
+    r = dict(cycles=t + 1, bundles=nbundles, bank_conflicts=conflicts, branch_penalties=penalties,
+             icache_misses=imiss, dcache_misses=dmiss)
+    if lay is not None:
+        r.update(line_crossing_bundles=crossings, fetch_stall_cycles=fetch_stalls)
+    return r
+
+
+def _bank_conflicts(mem, maddr, start, banks, how):
+    """Extra cycles for one bundle's memory ops: each op that finds its bank busy with a
+    different word waits one cycle (the same word is broadcast)."""
+    seen, bc = {}, 0
+    for (k, _) in mem:
+        w = maddr[start + k] >> 2
+        bk = bank_of(w, banks, how)
+        if bk in seen and seen[bk] != w:
+            bc += 1
+        seen.setdefault(bk, w)
+    return bc
 
 
 def code_bytes(blocks, sched, ops, header):
@@ -582,11 +776,10 @@ CONFIGS = [
 ]
 
 
-def predication_opportunity(ops, blocks, dyn, max_skip=8):
-    """Short forward hammocks that creg/z predication could if-convert: a conditional branch
-    whose target lies at most `max_skip` straight-line instructions ahead, with no control
-    transfer in between. Counts dynamic instances and how often the branch was taken (on SB1
-    today every taken branch pays the penalty)."""
+def hammock_blocks(ops, blocks, max_skip=8):
+    """Short forward hammocks that creg/z predication could if-convert: {lead: k} for a block
+    ending in a conditional branch whose target lies at most `max_skip` straight-line
+    instructions ahead (k of them), with no control transfer in between."""
     convertible = {}
     for lead, seq in blocks.items():
         br = ops[seq[-1]]
@@ -606,12 +799,135 @@ def predication_opportunity(ops, blocks, dyn, max_skip=8):
             k += 1
         if ok:
             convertible[lead] = k
+    return convertible
+
+
+def predication_opportunity(ops, blocks, dyn, max_skip=8):
+    """Counts dynamic instances of hammock_blocks() and how often the branch was taken (on SB1
+    today every taken branch pays the penalty)."""
+    convertible = hammock_blocks(ops, blocks, max_skip)
     n = taken = 0
     for d in dyn:
         if d[0] in convertible:
             n += 1
             taken += d[2]
     return dict(static_hammocks=len(convertible), dynamic=n, dynamic_taken=taken)
+
+
+# ---------------------------------------------------------------- software pipelining bound
+def is_self_loop(seq, ops):
+    br = ops[seq[-1]]
+    if br.cls != "branch":
+        return False
+    m = re.search(r"\b([0-9a-f]{6,})\b", br.ops)
+    return bool(m) and int(m.group(1), 16) == seq[0]
+
+
+def carried_memory_deps(seq, ops, starts, maddr, msize, max_pairs=32):
+    """Loop-carried memory dependences of a self-loop block, from the trace: (a, b, latency)
+    for a store a in iteration t overlapping op b in iteration t+1 (and load a / store b)."""
+    n, found, pairs = len(seq), {}, 0
+    mem = [k for k, pc in enumerate(seq) if ops[pc].is_mem]
+    for s1, s2 in zip(starts, starts[1:]):
+        if s2 != s1 + n:
+            continue
+        pairs += 1
+        for a in mem:
+            sa = ops[seq[a]].cls == "store"
+            for b in mem:
+                if (a, b) in found or not (sa or ops[seq[b]].cls == "store"):
+                    continue
+                pa, pb = maddr[s1 + a], maddr[s2 + b]
+                if pa < pb + msize[s2 + b] and pb < pa + msize[s1 + a]:
+                    found[(a, b)] = 1 if sa else 0
+        if pairs >= max_pairs:
+            break
+    return {(a, b, d) for (a, b), d in found.items()}
+
+
+def modulo_ii(seq, ops, cfg, indep, carried_mem=()):
+    """Lower bound on the initiation interval of a software-pipelined single-block loop:
+    MII = max(ResMII, RecMII). ResMII: issue width, memory ports, mul/FP units, one branch per
+    bundle, and Hall's condition over the lane-capability sets. RecMII: the smallest II with no
+    positive dependence cycle under latency - II x distance, over true register dependences
+    and memory dependences (modulo variable expansion removes anti/output dependences)."""
+    LATC = cfg.get("lat", LAT)
+    body = [k for k, pc in enumerate(seq) if ops[pc].cls != "nop"]
+    if cfg["zol"]:
+        last = ops[seq[-1]]
+        if last.cls == "branch" and _is_backward(last):
+            body = body[:-1]
+    O = [ops[seq[k]] for k in body]
+    n = len(O)
+    if not n:
+        return 1
+    W = cfg["width"]
+    res = -(-n // W)
+    nmem = sum(o.is_mem for o in O)
+    res = max(res, -(-nmem // cfg["max_mem"]), -(-sum(o.cls == "store" for o in O) // cfg["max_stores"]),
+              sum(o.is_ctrl for o in O))
+    if cfg.get("mul_units"):
+        res = max(res, -(-sum(o.cls in MUL_CLS for o in O) // cfg["mul_units"]))
+    if cfg.get("fp_units"):
+        res = max(res, -(-sum(o.cls in FP_CLS for o in O) // cfg["fp_units"]))
+    caps = [frozenset(lanes_for(o, cfg)) for o in O]
+    sets = set(caps)
+    for x in list(sets):
+        for y in list(sets):
+            sets.add(x | y)
+    for S in sets:
+        if S:
+            res = max(res, -(-sum(c <= S for c in caps) // len(S)))
+    # dependence graph: (u, v, latency, iteration distance)
+    pos = {k: j for j, k in enumerate(body)}
+    edges = []
+    last_w, exposed = {}, collections.defaultdict(list)
+    for j, o in enumerate(O):
+        for r in o.src:
+            if r in last_w:
+                edges.append((last_w[r], j, LATC[O[last_w[r]].cls], 0))
+            else:
+                exposed[r].append(j)
+        for r in o.dst:
+            last_w[r] = j
+        if o.is_mem:
+            for i in range(j):
+                p = O[i]
+                if p.is_mem and (p.cls == "store" or o.cls == "store") and (body[i], body[j]) not in indep:
+                    edges.append((i, j, 1 if p.cls == "store" else 0, 0))
+    carried = [(last_w[r], j, LATC[O[last_w[r]].cls], 1) for r, js in exposed.items() if r in last_w for j in js]
+    carried += [(pos[a], pos[b], d, 1) for (a, b, d) in carried_mem if a in pos and b in pos]
+    if not carried:
+        return max(res, 1)
+    edges += carried
+
+    def feasible(II):
+        """No positive cycle under weights lat - II*distance (Bellman-Ford from a virtual
+        source; edges are in program order, so each pass settles one loop-carried hop)."""
+        dist = [0] * n
+        for _ in range(n + 1):
+            changed = False
+            for (u, v, w, d) in edges:
+                x = dist[u] + w - II * d
+                if x > dist[v]:
+                    dist[v] = x
+                    changed = True
+            if not changed:
+                return True
+        return False
+
+    lo = max(res, 1)
+    if feasible(lo):
+        return lo
+    hi = lo + sum(w for (_, _, w, _) in edges) + 1
+    while hi - lo > 1:  # invariant: lo infeasible, hi feasible
+        mid = (lo + hi) // 2
+        if feasible(mid):
+            hi = mid
+        else:
+            lo = mid
+    return hi
+
 
 HEADERS = {
     "16-bit hint (SB1)": lambda n: 2,
@@ -643,11 +959,27 @@ def run_scheduled(elf, trace, cfgs=CONFIGS, alias="oracle"):
         inst[d[0]].append(d[1])
     indep = {lead: (independent_pairs(seq, ops, inst[lead], maddr, msize) if alias == "oracle" else set())
              for lead, seq in blocks.items()}
+    hammocks = hammock_blocks(ops, blocks)
+    loops = [lead for lead, seq in blocks.items() if is_self_loop(seq, ops)] if any(c.get("swp") for c in cfgs) else []
+    cmem = {lead: carried_memory_deps(blocks[lead], ops, inst[lead], maddr, msize) if alias == "oracle"
+            else {(a, b, 1 if ops[pa].cls == "store" else 0)
+                  for a, pa in enumerate(blocks[lead]) for b, pb in enumerate(blocks[lead])
+                  if ops[pa].is_mem and ops[pb].is_mem and "store" in (ops[pa].cls, ops[pb].cls)}
+            for lead in loops}
     res = {"instructions": len(pcs), "blocks": len(blocks), "configs": {},
            "predication": predication_opportunity(ops, blocks, dyn)}
+    cache, iicache = {}, {}
     for cfg in cfgs:
-        sched = {lead: schedule_block(seq, ops, cfg, indep[lead]) for lead, seq in blocks.items()}
-        r = simulate(blocks, dyn, sched, ops, maddr, cfg, warm)
+        key = sched_key(cfg)
+        if key not in cache:
+            cache[key] = {lead: schedule_block(seq, ops, cfg, indep[lead]) for lead, seq in blocks.items()}
+        sched = cache[key]
+        ii = None
+        if cfg.get("swp"):
+            if key not in iicache:
+                iicache[key] = {lead: modulo_ii(blocks[lead], ops, cfg, indep[lead], cmem[lead]) for lead in loops}
+            ii = iicache[key]
+        r = simulate(blocks, dyn, sched, ops, maddr, cfg, warm, hammocks=hammocks, ii=ii)
         if cfg["width"] > 1:
             r["code_bytes"] = {h: code_bytes(blocks, sched, ops, f) for h, f in HEADERS.items()}
             r["line_crossings"] = {h: line_crossings(blocks, dyn, sched, ops, f) for h, f in HEADERS.items()}

@@ -26,6 +26,8 @@ This repo holds everything produced on the analysis side so far:
 | How the current RTL fetches/decodes bundles, and its suspected bugs | [`docs/03-rtl-analysis.md`](docs/03-rtl-analysis.md) |
 | The proposed STARBUG 2 32-bit packet header | [`docs/04-starbug2-header.md`](docs/04-starbug2-header.md) + [`spec/`](spec/) |
 | How much each proposed ISA change buys | [`docs/05-isa-trade-study.md`](docs/05-isa-trade-study.md) |
+| **Every combination of the structural options, and what to build** | [`docs/07-design-space-exploration.md`](docs/07-design-space-exploration.md) |
+| **The compiler: what exists, what each change needs, how to get the best code** | [`docs/08-compiler.md`](docs/08-compiler.md) |
 | What's still open | [`docs/06-open-questions.md`](docs/06-open-questions.md) |
 | Building and running the MPACT simulator | [`docs/02-mpact-simulator.md`](docs/02-mpact-simulator.md) |
 | RV32 instruction reference, marked with what Starbug enables | [`docs/riscv-isa-reference.md`](docs/riscv-isa-reference.md) |
@@ -46,6 +48,20 @@ This repo holds everything produced on the analysis side so far:
    - `jal` inside a bundle links to op 0;
    - worker lanes drop ops silently (finding 5).
 
+7. **Design-space exploration (10-16).** Covers 222 combinations plus one-knob sensitivity
+   ([`docs/07`](docs/07-design-space-exploration.md)).
+   - SB1 bundles average 1.5–2.3 ops of 4.
+   - Memory ports *and banks* set performance: 1 LS + 1 load-only is 1.27× with 2 banks, 1.33×
+     with 4, 1.44× conflict-free.
+   - 8-wide pays only with four conflict-free memory ops.
+   - Line-straddle fallback costs 9–19%.
+   - Perfect caches are worth +10–12%.
+   - Predication buys 0.
+8. **Compiler (10-16).** Leo's `starbug-vliw` CPU has no scheduling model, so its machine pipeliner
+   never runs ([`docs/08`](docs/08-compiler.md)). In the model, latency-aware scheduling, modulo
+   scheduling and alias information together are worth +37–47% on the same hardware: more than any
+   hardware change.
+
 ## Repository layout
 
 ```
@@ -58,6 +74,8 @@ docs/
   04-starbug2-header.md   interpretation of the custom-0 execute-packet header + open questions
   05-isa-trade-study.md   method, validation against RTL, results, what it overturned, limits
   06-open-questions.md    open design questions and next tasks, prioritised
+  07-design-space-exploration.md  full-factorial + sensitivity sweep, recommendations
+  08-compiler.md          LLVM fork review, compiler work per hardware change, roadmap
   riscv-isa-reference.md  RV32 ISA organised by extension, Starbug support marked
   notes/MPACT_NOTES.md    original working notes from the simulator bring-up (local paths kept as-is)
 spec/
@@ -65,9 +83,11 @@ spec/
 sim/
   rvr-starbug-trace.patch PC/data-address tracing + 16550 UART stub for MPACT rv32g_sim
   picolibc-mpact.ld       picolibc linker script with LMA == VMA (BSD-3, Keith Packard)
-mpact_run/                scripts: builds, MPACT runs, trace-driven VLIW model, sweeps, report
+mpact_run/                scripts: builds, MPACT runs, trace-driven VLIW model, sweeps, report,
+                          dse.py / dse_summary.py (design-space sweeps), bundle_check.py (lane rules)
+  tests/                  unit + regression tests for the model (python3 -m unittest discover -s tests)
   kernels/                int8 depthwise conv, Q15 FIR, Embench board glue (written for the study)
-  results/                CSV/JSON/HTML results, raw model output, MPACT counters,
+  results/                CSV/JSON/HTML results, raw model output, MPACT counters, dse/ tables,
                           elfs.tar.xz (42 benchmark ELFs) and traces.tar.xz (215 MB unpacked)
 ```
 
@@ -92,6 +112,8 @@ tar xJf <repo>/mpact_run/results/elfs.tar.xz && tar xJf <repo>/mpact_run/results
 cd <repo>/mpact_run
 python3 validate.py && python3 sweep_isa.py && python3 width_vs_ports.py && python3 unroll_sensitivity.py
 python3 summarize.py && python3 gen_report.py      # -> results/*.csv, digest.json, starbug_isa_study.html
+python3 dse.py all && python3 dse_summary.py       # design-space sweeps (~15 min on 4 cores) -> results/dse/
+python3 -m unittest discover -s tests              # model tests, incl. regression against results/raw/
 ```
 
 `STARBUG_HOME` (default `~/starbug`) and `CVW_LMFP` (default `$STARBUG_HOME/cvw-lmfp`) override the

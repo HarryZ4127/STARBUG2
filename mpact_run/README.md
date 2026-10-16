@@ -20,7 +20,7 @@ Results the report reads are written into `./results/`. Raw model output is writ
 | `sweep.sh [lens…]` | Kernel-only `mcycle` per length for -O0, -O2, vliw_better (VLIW sim and scalar sim) and vliw, with output checks |
 | `dp_main_timed.c` | dp driver that reads `mcycle`/`minstret` around the kernel only |
 | `mpact_stdio.c` | picolibc stdout through semihost `SYS_WRITE`, which MPACT supports, instead of `SYS_WRITEC` |
-| `bundle_check.py <elf>` | Lists `c.li zero,N` bundles; flags intra-bundle RAW/WAW and width > 4. **Does not yet check lane-0 rules** (open item A1) |
+| `bundle_check.py <elf> [--quiet]` | Lists `c.li zero,N` bundles. Flags intra-bundle RAW/WAW (x and f registers), width > 4, memory/branch/CSR/`auipc` outside slot 0, and more than one memory op. Exits 1 if anything is flagged |
 
 ### ISA trade study, 2026-10-13
 Run in this order:
@@ -40,6 +40,35 @@ Run in this order:
 
 `vliw_model.py` is the trace-driven timing model; the docstrings explain each part. `kernels/` holds
 the two new kernels and the Embench board glue.
+
+### Design-space exploration, 2026-10-16
+`vliw_model.make_cfg()` gained knobs for every structural choice under discussion. They all default
+to "unlimited / as before", so steps 5–10 above reproduce the 2026-10-13 results byte for byte.
+- **Latencies:** per-class overrides.
+- **Shared units and ports:** mul/div and FP units per bundle; register-file read/write ports.
+- **Memory:** 2/4/8 banks, word-interleaved or XOR-hashed.
+- **Caches:** I$/D$ size and miss penalty.
+- **Front end:** fetch bandwidth with a fetch queue; how a line-straddling bundle is handled
+  (free, +1 cycle, or issued scalar) under the 16-bit hint or 32-bit header.
+- **Predication:** creg/z if-conversion of short hammocks.
+- **Scheduling:** a greedy packetizer like the LLVM one, and software pipelining (modulo-schedule
+  lower bound).
+
+| Script | Output |
+|---|---|
+| `dse.py factorial` | 224 configs: width {2,4,6,8} × memory {1LS, 1LS+1LO, 2LS, 2LS+2LO} × banks {ideal,2,4} × branch {none,BTFN,gshare} × ZOL, on unrolled and `-O3` code → `$STARBUG_HOME/dse_factorial.json` |
+| `dse.py sensitivity` | 53 one-knob changes around SB1 and around the SB2 candidate → `dse_sensitivity.json` |
+| `dse.py compiler` | scheduler (packetizer / list / +modulo) × alias info × code variant × 3 machines → `dse_compiler.json` |
+| `dse_summary.py` | → `results/dse/*.csv` and `results/dse/SUMMARY.md` |
+
+`python3 dse.py all && python3 dse_summary.py` takes about 15 minutes on 4 cores.
+
+### Tests
+```bash
+python3 -m unittest discover -s tests -v     # 31 tests; the regression test needs $STARBUG_HOME/traces
+```
+The tests cover every knob on small hand-built programs. The regression test checks that the
+extended model still reproduces `results/raw/isa_sweep.json` exactly.
 
 ## Shortcut: skip steps 1–4
 ```bash

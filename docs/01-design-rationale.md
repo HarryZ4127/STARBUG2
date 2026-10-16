@@ -293,6 +293,11 @@ Geomean over 16 kernels, unrolled code, conflict-free:
   appear side by side as if comparable.
 
 ## 12. Recommended STARBUG 2 direction (from the evidence above)
+
+> **Updated 2026-10-16:** the full design-space sweep refines this list. It adds 4 banks instead of
+> 2, a fetch queue that spans I$ lines, ≥ 2 FP units, one RF write port per lane, and the compiler
+> work. See [`07-design-space-exploration.md`](07-design-space-exploration.md#recommended-starbug-2-configuration)
+> and [`08-compiler.md`](08-compiler.md#5-recommended-compiler-roadmap-in-order).
 1. **Add one load/store path plus one load-only path**, with interleaved banks *and* placement by the
    compiler or linker. Conflict-free this is about 1.29×; with naive placement about 1.14×.
 2. **Re-enable gshare** in `config/starbug`: about 1.07×, and it also makes the RTL comparison fair.

@@ -76,10 +76,19 @@ why. Nothing here modifies the RTL.
 
 ## Where to continue
 `docs/06-open-questions.md` has the prioritised list. The top items:
-1. Add the lane-0 memory/branch/CSR rule to `mpact_run/bundle_check.py` and/or MPACT's VLIW decoder.
-   Then re-measure the dp kernel with a legal schedule.
+1. `bundle_check.py` now enforces the lane-0 rule (done 10-16). Still to do: make MPACT's VLIW
+   decoder enforce it, re-measure the dp kernel with a legal schedule, and report the two latent
+   hand-kernel violations (A6).
 2. Confirm the three suspected RTL bugs with a small assembly test under `wsim` (Questa or Verilator)
    on cvw `lm/fp`.
 3. Settle the STARBUG 2 packet-length rule with the designer: "always 4 ops" vs "ends at the first p=0".
 4. Port MPACT's decoder and executor to the custom-0 header: snapshot sources, apply predicates, allow
    one memory op per packet.
+5. Compiler: give `starbug-vliw` a scheduling model (A7, `docs/08-compiler.md`).
+
+## Model and sweeps
+- `vliw_model.make_cfg()` knobs all default to the 10-13 behaviour.
+  `python3 -m unittest discover -s tests` (in `mpact_run/`) checks that, and that `isa_sweep.json`
+  is reproduced exactly. Run it after any model change.
+- `dse.py` sweeps. `dse_summary.py` rebuilds `results/dse/` from `results/raw/dse_*.json` without
+  re-running.
