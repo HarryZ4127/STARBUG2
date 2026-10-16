@@ -1,0 +1,1201 @@
+{
+ "validation": [
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n1",
+   "run": "scalar on RV32GC",
+   "model": 126,
+   "rtl": 126,
+   "error": 0.0
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n1",
+   "run": "hand-VLIW on RV32GC",
+   "model": 174,
+   "rtl": 186,
+   "error": -0.0645
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n1",
+   "run": "hand-VLIW on Starbug",
+   "model": 130,
+   "rtl": 136,
+   "error": -0.0441
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n128",
+   "run": "scalar on RV32GC",
+   "model": 5409,
+   "rtl": 4635,
+   "error": 0.167
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n128",
+   "run": "hand-VLIW on RV32GC",
+   "model": 4566,
+   "rtl": 4685,
+   "error": -0.0254
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n128",
+   "run": "hand-VLIW on Starbug",
+   "model": 3341,
+   "rtl": 3079,
+   "error": 0.0851
+  },
+  {
+   "benchmark": "dct4_2048_f32",
+   "run": "scalar on RV32GC",
+   "model": 301610,
+   "rtl": 304097,
+   "error": -0.0082
+  },
+  {
+   "benchmark": "dct4_2048_f32",
+   "run": "hand-VLIW on RV32GC",
+   "model": 275940,
+   "rtl": 287066,
+   "error": -0.0388
+  },
+  {
+   "benchmark": "dct4_2048_f32",
+   "run": "hand-VLIW on Starbug",
+   "model": 212814,
+   "rtl": 228987,
+   "error": -0.0706
+  },
+  {
+   "benchmark": "dct4_512_f32",
+   "run": "scalar on RV32GC",
+   "model": 63579,
+   "rtl": 64849,
+   "error": -0.0196
+  },
+  {
+   "benchmark": "dct4_512_f32",
+   "run": "hand-VLIW on RV32GC",
+   "model": 57991,
+   "rtl": 58643,
+   "error": -0.0111
+  },
+  {
+   "benchmark": "dct4_512_f32",
+   "run": "hand-VLIW on Starbug",
+   "model": 49015,
+   "rtl": 50903,
+   "error": -0.0371
+  },
+  {
+   "benchmark": "fir_f32_taps256_n1",
+   "run": "scalar on RV32GC",
+   "model": 3407,
+   "rtl": 3660,
+   "error": -0.0691
+  },
+  {
+   "benchmark": "fir_f32_taps256_n1",
+   "run": "hand-VLIW on RV32GC",
+   "model": 2247,
+   "rtl": 2458,
+   "error": -0.0858
+  },
+  {
+   "benchmark": "fir_f32_taps256_n1",
+   "run": "hand-VLIW on Starbug",
+   "model": 1840,
+   "rtl": 2123,
+   "error": -0.1333
+  },
+  {
+   "benchmark": "fir_f32_taps256_n128",
+   "run": "scalar on RV32GC",
+   "model": 233333,
+   "rtl": 233653,
+   "error": -0.0014
+  },
+  {
+   "benchmark": "fir_f32_taps256_n128",
+   "run": "hand-VLIW on RV32GC",
+   "model": 155973,
+   "rtl": 156130,
+   "error": -0.001
+  },
+  {
+   "benchmark": "fir_f32_taps256_n128",
+   "run": "hand-VLIW on Starbug",
+   "model": 121635,
+   "rtl": 121898,
+   "error": -0.0022
+  },
+  {
+   "benchmark": "lms_f32_taps256_n1",
+   "run": "scalar on RV32GC",
+   "model": 5505,
+   "rtl": 5737,
+   "error": -0.0404
+  },
+  {
+   "benchmark": "lms_f32_taps256_n1",
+   "run": "hand-VLIW on RV32GC",
+   "model": 3687,
+   "rtl": 3963,
+   "error": -0.0696
+  },
+  {
+   "benchmark": "lms_f32_taps256_n1",
+   "run": "hand-VLIW on Starbug",
+   "model": 3068,
+   "rtl": 3619,
+   "error": -0.1523
+  },
+  {
+   "benchmark": "lms_f32_taps256_n128",
+   "run": "scalar on RV32GC",
+   "model": 497306,
+   "rtl": 497726,
+   "error": -0.0008
+  },
+  {
+   "benchmark": "lms_f32_taps256_n128",
+   "run": "hand-VLIW on RV32GC",
+   "model": 334704,
+   "rtl": 343021,
+   "error": -0.0242
+  },
+  {
+   "benchmark": "lms_f32_taps256_n128",
+   "run": "hand-VLIW on Starbug",
+   "model": 286534,
+   "rtl": 295351,
+   "error": -0.0299
+  },
+  {
+   "benchmark": "rfft2048_f32",
+   "run": "scalar on RV32GC",
+   "model": 139704,
+   "rtl": 128281,
+   "error": 0.089
+  },
+  {
+   "benchmark": "rfft2048_f32",
+   "run": "hand-VLIW on RV32GC",
+   "model": 141824,
+   "rtl": 144424,
+   "error": -0.018
+  },
+  {
+   "benchmark": "rfft2048_f32",
+   "run": "hand-VLIW on Starbug",
+   "model": 95248,
+   "rtl": 98300,
+   "error": -0.031
+  },
+  {
+   "benchmark": "rfft512_f32",
+   "run": "scalar on RV32GC",
+   "model": 29335,
+   "rtl": 27739,
+   "error": 0.0575
+  },
+  {
+   "benchmark": "rfft512_f32",
+   "run": "hand-VLIW on RV32GC",
+   "model": 30398,
+   "rtl": 28988,
+   "error": 0.0486
+  },
+  {
+   "benchmark": "rfft512_f32",
+   "run": "hand-VLIW on Starbug",
+   "model": 26194,
+   "rtl": 25422,
+   "error": 0.0304
+  }
+ ],
+ "validation_summary": {
+  "scalar on RV32GC": {
+   "median_abs_error": 0.0404,
+   "within_5pct": 6,
+   "within_10pct": 9,
+   "n": 10
+  },
+  "hand-VLIW on RV32GC": {
+   "median_abs_error": 0.0388,
+   "within_5pct": 7,
+   "within_10pct": 10,
+   "n": 10
+  },
+  "hand-VLIW on Starbug": {
+   "median_abs_error": 0.0441,
+   "within_5pct": 6,
+   "within_10pct": 8,
+   "n": 10
+  }
+ },
+ "starbug_vs_scalar_geomean": {
+  "model": 1.4857497272609415,
+  "rtl": 1.4035170170376665
+ },
+ "configs": [
+  "RV32GC baseline: 1-wide, gshare",
+  "SB1 today: 4-wide, 1 mem op (lane 0), no predictor",
+  "+ gshare predictor (as RV32GC)",
+  "+ static BTFN prediction",
+  "+ zero-overhead loops",
+  "+ 1 LS + 1 load-only, 2 interleaved banks",
+  "+ 1 LS + 1 load-only, conflict-free",
+  "+ 2 LS, 2 interleaved banks",
+  "+ 2 LS, conflict-free",
+  "8-wide, 1 mem op",
+  "8-wide, 1 LS + 1 load-only, 2 banks",
+  "8-wide, 2 LS, 2 banks",
+  "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL",
+  "8-wide, 2 LS, 2 banks, gshare, ZOL",
+  "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL"
+ ],
+ "per_benchmark": [
+  {
+   "benchmark": "fir_f32_taps256_n128",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 85404,
+   "sb1_over_rv32gc_scalar": 2.732,
+   "RV32GC baseline: 1-wide, gshare": 0.715,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.106,
+   "+ static BTFN prediction": 1.103,
+   "+ zero-overhead loops": 1.109,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.24,
+   "+ 1 LS + 1 load-only, conflict-free": 1.626,
+   "+ 2 LS, 2 interleaved banks": 1.247,
+   "+ 2 LS, conflict-free": 1.638,
+   "8-wide, 1 mem op": 1.002,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.242,
+   "8-wide, 2 LS, 2 banks": 1.249,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.418,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.426,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 3.149
+  },
+  {
+   "benchmark": "fir_f32_taps256_n1",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 1313,
+   "sb1_over_rv32gc_scalar": 2.595,
+   "RV32GC baseline: 1-wide, gshare": 0.778,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.063,
+   "+ static BTFN prediction": 1.097,
+   "+ zero-overhead loops": 1.133,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.365,
+   "+ 1 LS + 1 load-only, conflict-free": 1.412,
+   "+ 2 LS, 2 interleaved banks": 1.574,
+   "+ 2 LS, conflict-free": 1.637,
+   "8-wide, 1 mem op": 1.001,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.369,
+   "8-wide, 2 LS, 2 banks": 1.58,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.629,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.857,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 3.089
+  },
+  {
+   "benchmark": "lms_f32_taps256_n128",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 196777,
+   "sb1_over_rv32gc_scalar": 2.527,
+   "RV32GC baseline: 1-wide, gshare": 0.732,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.089,
+   "+ static BTFN prediction": 1.087,
+   "+ zero-overhead loops": 1.116,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.298,
+   "+ 1 LS + 1 load-only, conflict-free": 1.501,
+   "+ 2 LS, 2 interleaved banks": 1.459,
+   "+ 2 LS, conflict-free": 1.721,
+   "8-wide, 1 mem op": 1.001,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.299,
+   "8-wide, 2 LS, 2 banks": 1.461,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.506,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.669,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 3.251
+  },
+  {
+   "benchmark": "lms_f32_taps256_n1",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 2188,
+   "sb1_over_rv32gc_scalar": 2.516,
+   "RV32GC baseline: 1-wide, gshare": 0.758,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.057,
+   "+ static BTFN prediction": 1.087,
+   "+ zero-overhead loops": 1.128,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.387,
+   "+ 1 LS + 1 load-only, conflict-free": 1.416,
+   "+ 2 LS, 2 interleaved banks": 1.658,
+   "+ 2 LS, conflict-free": 1.699,
+   "8-wide, 1 mem op": 1.001,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.391,
+   "8-wide, 2 LS, 2 banks": 1.663,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.649,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.938,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 3.19
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n128",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 3719,
+   "sb1_over_rv32gc_scalar": 1.454,
+   "RV32GC baseline: 1-wide, gshare": 0.958,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.044,
+   "+ static BTFN prediction": 1.052,
+   "+ zero-overhead loops": 1.053,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.003,
+   "+ 1 LS + 1 load-only, conflict-free": 1.004,
+   "+ 2 LS, 2 interleaved banks": 1.004,
+   "+ 2 LS, conflict-free": 1.004,
+   "8-wide, 1 mem op": 1.0,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.003,
+   "8-wide, 2 LS, 2 banks": 1.004,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.057,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.058,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.06
+  },
+  {
+   "benchmark": "biquad_cascade_df2T_f32_sos3_n1",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 121,
+   "sb1_over_rv32gc_scalar": 1.041,
+   "RV32GC baseline: 1-wide, gshare": 0.807,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.034,
+   "+ static BTFN prediction": 1.0,
+   "+ zero-overhead loops": 1.0,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.11,
+   "+ 1 LS + 1 load-only, conflict-free": 1.12,
+   "+ 2 LS, 2 interleaved banks": 1.142,
+   "+ 2 LS, conflict-free": 1.152,
+   "8-wide, 1 mem op": 1.0,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.11,
+   "8-wide, 2 LS, 2 banks": 1.142,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.152,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.186,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.274
+  },
+  {
+   "benchmark": "dct4_2048_f32",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 160936,
+   "sb1_over_rv32gc_scalar": 1.874,
+   "RV32GC baseline: 1-wide, gshare": 0.662,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.043,
+   "+ static BTFN prediction": 1.043,
+   "+ zero-overhead loops": 1.071,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.078,
+   "+ 1 LS + 1 load-only, conflict-free": 1.16,
+   "+ 2 LS, 2 interleaved banks": 1.155,
+   "+ 2 LS, conflict-free": 1.268,
+   "8-wide, 1 mem op": 1.007,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.096,
+   "8-wide, 2 LS, 2 banks": 1.174,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.161,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.254,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.515
+  },
+  {
+   "benchmark": "dct4_512_f32",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 31117,
+   "sb1_over_rv32gc_scalar": 2.043,
+   "RV32GC baseline: 1-wide, gshare": 0.629,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.047,
+   "+ static BTFN prediction": 1.052,
+   "+ zero-overhead loops": 1.088,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.098,
+   "+ 1 LS + 1 load-only, conflict-free": 1.189,
+   "+ 2 LS, 2 interleaved banks": 1.206,
+   "+ 2 LS, conflict-free": 1.35,
+   "8-wide, 1 mem op": 1.011,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.122,
+   "8-wide, 2 LS, 2 banks": 1.221,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.206,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.329,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.722
+  },
+  {
+   "benchmark": "rfft2048_f32",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 71685,
+   "sb1_over_rv32gc_scalar": 1.949,
+   "RV32GC baseline: 1-wide, gshare": 0.536,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.04,
+   "+ static BTFN prediction": 1.038,
+   "+ zero-overhead loops": 1.068,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.071,
+   "+ 1 LS + 1 load-only, conflict-free": 1.159,
+   "+ 2 LS, 2 interleaved banks": 1.12,
+   "+ 2 LS, conflict-free": 1.238,
+   "8-wide, 1 mem op": 1.017,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.111,
+   "8-wide, 2 LS, 2 banks": 1.169,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.149,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.245,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.458
+  },
+  {
+   "benchmark": "rfft512_f32",
+   "group": "float DSP (team Embench suite)",
+   "sb1_cycles": 14943,
+   "sb1_over_rv32gc_scalar": 1.963,
+   "RV32GC baseline: 1-wide, gshare": 0.531,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.038,
+   "+ static BTFN prediction": 1.038,
+   "+ zero-overhead loops": 1.071,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.053,
+   "+ 1 LS + 1 load-only, conflict-free": 1.142,
+   "+ 2 LS, 2 interleaved banks": 1.114,
+   "+ 2 LS, conflict-free": 1.252,
+   "8-wide, 1 mem op": 1.024,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.098,
+   "8-wide, 2 LS, 2 banks": 1.146,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.135,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.223,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.501
+  },
+  {
+   "benchmark": "matmult-int",
+   "group": "integer DSP / ML",
+   "sb1_cycles": 77401,
+   "sb1_over_rv32gc_scalar": 1.82,
+   "RV32GC baseline: 1-wide, gshare": 0.695,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.042,
+   "+ static BTFN prediction": 1.021,
+   "+ zero-overhead loops": 1.057,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.241,
+   "+ 1 LS + 1 load-only, conflict-free": 1.626,
+   "+ 2 LS, 2 interleaved banks": 1.274,
+   "+ 2 LS, conflict-free": 1.676,
+   "8-wide, 1 mem op": 1.01,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.257,
+   "8-wide, 2 LS, 2 banks": 1.291,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.331,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.37,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.955
+  },
+  {
+   "benchmark": "edn",
+   "group": "integer DSP / ML",
+   "sb1_cycles": 32303,
+   "sb1_over_rv32gc_scalar": 2.653,
+   "RV32GC baseline: 1-wide, gshare": 0.525,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.055,
+   "+ static BTFN prediction": 1.047,
+   "+ zero-overhead loops": 1.075,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.152,
+   "+ 1 LS + 1 load-only, conflict-free": 1.405,
+   "+ 2 LS, 2 interleaved banks": 1.198,
+   "+ 2 LS, conflict-free": 1.47,
+   "8-wide, 1 mem op": 1.004,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.203,
+   "8-wide, 2 LS, 2 banks": 1.252,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.243,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.333,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 2.088
+  },
+  {
+   "benchmark": "dwconv3x3_i8",
+   "group": "integer DSP / ML",
+   "sb1_cycles": 132955,
+   "sb1_over_rv32gc_scalar": 1.828,
+   "RV32GC baseline: 1-wide, gshare": 0.547,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.061,
+   "+ static BTFN prediction": 1.061,
+   "+ zero-overhead loops": 1.104,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.034,
+   "+ 1 LS + 1 load-only, conflict-free": 1.399,
+   "+ 2 LS, 2 interleaved banks": 1.073,
+   "+ 2 LS, conflict-free": 1.471,
+   "8-wide, 1 mem op": 1.0,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.034,
+   "8-wide, 2 LS, 2 banks": 1.072,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.146,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.148,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.709
+  },
+  {
+   "benchmark": "fir_q15",
+   "group": "integer DSP / ML",
+   "sb1_cycles": 53409,
+   "sb1_over_rv32gc_scalar": 2.602,
+   "RV32GC baseline: 1-wide, gshare": 0.637,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.102,
+   "+ static BTFN prediction": 1.061,
+   "+ zero-overhead loops": 1.094,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.181,
+   "+ 1 LS + 1 load-only, conflict-free": 1.443,
+   "+ 2 LS, 2 interleaved banks": 1.182,
+   "+ 2 LS, conflict-free": 1.443,
+   "8-wide, 1 mem op": 1.0,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.181,
+   "8-wide, 2 LS, 2 banks": 1.182,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.335,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.335,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 2.263
+  },
+  {
+   "benchmark": "crc32",
+   "group": "ALU / control",
+   "sb1_cycles": 92073,
+   "sb1_over_rv32gc_scalar": 1.072,
+   "RV32GC baseline: 1-wide, gshare": 1.005,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.232,
+   "+ static BTFN prediction": 1.011,
+   "+ zero-overhead loops": 1.011,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.0,
+   "+ 1 LS + 1 load-only, conflict-free": 1.0,
+   "+ 2 LS, 2 interleaved banks": 1.047,
+   "+ 2 LS, conflict-free": 1.047,
+   "8-wide, 1 mem op": 1.0,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.0,
+   "8-wide, 2 LS, 2 banks": 1.047,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.233,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.305,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.305
+  },
+  {
+   "benchmark": "nettle-sha256",
+   "group": "ALU / control",
+   "sb1_cycles": 31046,
+   "sb1_over_rv32gc_scalar": 1.805,
+   "RV32GC baseline: 1-wide, gshare": 0.585,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.006,
+   "+ static BTFN prediction": 1.0,
+   "+ zero-overhead loops": 1.002,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.097,
+   "+ 1 LS + 1 load-only, conflict-free": 1.219,
+   "+ 2 LS, 2 interleaved banks": 1.12,
+   "+ 2 LS, conflict-free": 1.239,
+   "8-wide, 1 mem op": 1.001,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.101,
+   "8-wide, 2 LS, 2 banks": 1.123,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.105,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.131,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.293
+  }
+ ],
+ "group_geomean": {
+  "float DSP (team Embench suite)": {
+   "RV32GC baseline: 1-wide, gshare": 0.700079388507783,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0558625781254465,
+   "+ static BTFN prediction": 1.059241950443922,
+   "+ zero-overhead loops": 1.0830143750051553,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.1630458460145754,
+   "+ 1 LS + 1 load-only, conflict-free": 1.2591400277852502,
+   "+ 2 LS, 2 interleaved banks": 1.2519711815154784,
+   "+ 2 LS, conflict-free": 1.3744536576521786,
+   "8-wide, 1 mem op": 1.006368764996871,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.177661574097666,
+   "8-wide, 2 LS, 2 banks": 1.2657690423777612,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.289931305063326,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.3917877899035038,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.9457442293185516
+  },
+  "integer DSP / ML": {
+   "RV32GC baseline: 1-wide, gshare": 0.5971283856053523,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0647662805078677,
+   "+ static BTFN prediction": 1.0473716103149089,
+   "+ zero-overhead loops": 1.082349352664926,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.1494727344458087,
+   "+ 1 LS + 1 load-only, conflict-free": 1.4654473765658818,
+   "+ 2 LS, 2 interleaved banks": 1.1795350788555496,
+   "+ 2 LS, conflict-free": 1.5122290903553088,
+   "8-wide, 1 mem op": 1.0034916697567138,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.165716209208356,
+   "8-wide, 2 LS, 2 banks": 1.1962878951190643,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.2613301207214942,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.2934316015965077,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.993315152753562
+  },
+  "ALU / control": {
+   "RV32GC baseline: 1-wide, gshare": 0.7667626751479234,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.1132798390341936,
+   "+ static BTFN prediction": 1.0054849576199536,
+   "+ zero-overhead loops": 1.0064899403372096,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.047377677822093,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1040833301884418,
+   "+ 2 LS, 2 interleaved banks": 1.0828850354492854,
+   "+ 2 LS, conflict-free": 1.1389613689673588,
+   "8-wide, 1 mem op": 1.000499875062461,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.049285471165974,
+   "8-wide, 2 LS, 2 banks": 1.0843343580280023,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.1672467605438022,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.214888883807898,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.2989861431131589
+  },
+  "all": {
+   "RV32GC baseline: 1-wide, gshare": 0.6804819452168478,
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0651082265039324,
+   "+ static BTFN prediction": 1.0494074170558783,
+   "+ zero-overhead loops": 1.0729745807399897,
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1.1445521996098058,
+   "+ 1 LS + 1 load-only, conflict-free": 1.286512639857483,
+   "+ 2 LS, 2 interleaved banks": 1.2112867509156253,
+   "+ 2 LS, conflict-free": 1.3749893509746167,
+   "8-wide, 1 mem op": 1.0049137551912037,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1.1578378208176254,
+   "8-wide, 2 LS, 2 banks": 1.2241252972987202,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1.2667958750674573,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1.343495065048609,
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": 1.8611147508084465
+  }
+ },
+ "sb1_over_rv32gc_geomean": {
+  "float DSP (team Embench suite)": 1.9951332956632841,
+  "integer DSP / ML": 2.189137449000295,
+  "ALU / control": 1.3910283965469576,
+  "all": 1.9519455772579712
+ },
+ "over_rv32gc_geomean": {
+  "RV32GC baseline: 1-wide, gshare": {
+   "float DSP (team Embench suite)": 1.3970107212410308,
+   "integer DSP / ML": 1.3074626303130918,
+   "ALU / control": 1.0672530796821134,
+   "all": 1.3285887944580823
+  },
+  "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+   "float DSP (team Embench suite)": 1.9952981790622024,
+   "integer DSP / ML": 2.1894656268130506,
+   "ALU / control": 1.391515390818911,
+   "all": 1.9522049674587203
+  },
+  "+ gshare predictor (as RV32GC)": {
+   "float DSP (team Embench suite)": 2.1069753964534272,
+   "integer DSP / ML": 2.3312625545321706,
+   "ALU / control": 1.5491986105976614,
+   "all": 2.0794493643104115
+  },
+  "+ static BTFN prediction": {
+   "float DSP (team Embench suite)": 2.113533037940419,
+   "integer DSP / ML": 2.2934595381875,
+   "ALU / control": 1.3990460374903715,
+   "all": 2.0487191265134004
+  },
+  "+ zero-overhead loops": {
+   "float DSP (team Embench suite)": 2.160774766389545,
+   "integer DSP / ML": 2.370201962338294,
+   "ALU / control": 1.400416859615221,
+   "all": 2.0946402369533192
+  },
+  "+ 1 LS + 1 load-only, 2 interleaved banks": {
+   "float DSP (team Embench suite)": 2.3207491563986467,
+   "integer DSP / ML": 2.5164248212048954,
+   "ALU / control": 1.4576257258199834,
+   "all": 2.2344434554433117
+  },
+  "+ 1 LS + 1 load-only, conflict-free": {
+   "float DSP (team Embench suite)": 2.5122444035663785,
+   "integer DSP / ML": 3.208007587721613,
+   "ALU / control": 1.5362960652391036,
+   "all": 2.5113479631732507
+  },
+  "+ 2 LS, 2 interleaved banks": {
+   "float DSP (team Embench suite)": 2.4977517359111685,
+   "integer DSP / ML": 2.582046819271194,
+   "ALU / control": 1.506583056049218,
+   "all": 2.364331979743445
+  },
+  "+ 2 LS, conflict-free": {
+   "float DSP (team Embench suite)": 2.7428550617583407,
+   "integer DSP / ML": 3.310714075521647,
+   "ALU / control": 1.5844664167508908,
+   "all": 2.684371292069157
+  },
+  "8-wide, 1 mem op": {
+   "float DSP (team Embench suite)": 2.007810853137746,
+   "integer DSP / ML": 2.1974887229420896,
+   "ALU / control": 1.3925025040439447,
+   "all": 1.961814365137935
+  },
+  "8-wide, 1 LS + 1 load-only, 2 banks": {
+   "float DSP (team Embench suite)": 2.3500099467853905,
+   "integer DSP / ML": 2.552120650668733,
+   "ALU / control": 1.4600013087385046,
+   "all": 2.2604141582242026
+  },
+  "8-wide, 2 LS, 2 banks": {
+   "float DSP (team Embench suite)": 2.5251333820003854,
+   "integer DSP / ML": 2.6190907210869363,
+   "ALU / control": 1.50854347725075,
+   "all": 2.3893791322576634
+  },
+  "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+   "float DSP (team Embench suite)": 2.5738969636068756,
+   "integer DSP / ML": 2.7614026470310944,
+   "ALU / control": 1.6246590433130321,
+   "all": 2.473131372831267
+  },
+  "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+   "float DSP (team Embench suite)": 2.7772076095650835,
+   "integer DSP / ML": 2.8323557647787942,
+   "ALU / control": 1.6905279253694745,
+   "all": 2.622979890414844
+  },
+  "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+   "float DSP (team Embench suite)": 3.8824502957600484,
+   "integer DSP / ML": 4.364414746088933,
+   "ALU / control": 1.8072767825307556,
+   "all": 3.6332959737556743
+  }
+ },
+ "sb1_anatomy": {
+  "fir_f32_taps256_n128": {
+   "cycles": 85404,
+   "bundles": 71865,
+   "branch_penalties": 4258,
+   "icache_misses": 0,
+   "dcache_misses": 16
+  },
+  "fir_f32_taps256_n1": {
+   "cycles": 1313,
+   "bundles": 1126,
+   "branch_penalties": 67,
+   "icache_misses": 1,
+   "dcache_misses": 0
+  },
+  "lms_f32_taps256_n128": {
+   "cycles": 196777,
+   "bundles": 174912,
+   "branch_penalties": 8354,
+   "icache_misses": 1,
+   "dcache_misses": 30
+  },
+  "lms_f32_taps256_n1": {
+   "cycles": 2188,
+   "bundles": 1937,
+   "branch_penalties": 99,
+   "icache_misses": 1,
+   "dcache_misses": 0
+  },
+  "biquad_cascade_df2T_f32_sos3_n128": {
+   "cycles": 3719,
+   "bundles": 1872,
+   "branch_penalties": 102,
+   "icache_misses": 1,
+   "dcache_misses": 16
+  },
+  "biquad_cascade_df2T_f32_sos3_n1": {
+   "cycles": 121,
+   "bundles": 69,
+   "branch_penalties": 12,
+   "icache_misses": 1,
+   "dcache_misses": 0
+  },
+  "dct4_2048_f32": {
+   "cycles": 160936,
+   "bundles": 98821,
+   "branch_penalties": 3541,
+   "icache_misses": 83,
+   "dcache_misses": 2017
+  },
+  "dct4_512_f32": {
+   "cycles": 31117,
+   "bundles": 22717,
+   "branch_penalties": 867,
+   "icache_misses": 92,
+   "dcache_misses": 265
+  },
+  "rfft2048_f32": {
+   "cycles": 71685,
+   "bundles": 51613,
+   "branch_penalties": 1485,
+   "icache_misses": 47,
+   "dcache_misses": 635
+  },
+  "rfft512_f32": {
+   "cycles": 14943,
+   "bundles": 10837,
+   "branch_penalties": 347,
+   "icache_misses": 55,
+   "dcache_misses": 134
+  },
+  "matmult-int": {
+   "cycles": 77401,
+   "bundles": 73821,
+   "branch_penalties": 1656,
+   "icache_misses": 15,
+   "dcache_misses": 0
+  },
+  "edn": {
+   "cycles": 32303,
+   "bundles": 28500,
+   "branch_penalties": 968,
+   "icache_misses": 41,
+   "dcache_misses": 0
+  },
+  "dwconv3x3_i8": {
+   "cycles": 132955,
+   "bundles": 110116,
+   "branch_penalties": 4098,
+   "icache_misses": 6,
+   "dcache_misses": 325
+  },
+  "fir_q15": {
+   "cycles": 53409,
+   "bundles": 43291,
+   "branch_penalties": 2823,
+   "icache_misses": 4,
+   "dcache_misses": 17
+  },
+  "crc32": {
+   "cycles": 92073,
+   "bundles": 61998,
+   "branch_penalties": 8715,
+   "icache_misses": 3,
+   "dcache_misses": 17
+  },
+  "nettle-sha256": {
+   "cycles": 31046,
+   "bundles": 27826,
+   "branch_penalties": 118,
+   "icache_misses": 15,
+   "dcache_misses": 0
+  }
+ },
+ "bank_conflicts": {
+  "fir_f32_taps256_n128": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 16386,
+   "+ 2 LS, 2 interleaved banks": 16386,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 16388,
+   "8-wide, 2 LS, 2 banks": 16388,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 16386,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 16388
+  },
+  "fir_f32_taps256_n1": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 32,
+   "+ 2 LS, 2 interleaved banks": 32,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 31,
+   "8-wide, 2 LS, 2 banks": 31,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 32,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 31
+  },
+  "lms_f32_taps256_n128": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 20482,
+   "+ 2 LS, 2 interleaved banks": 20482,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 20484,
+   "8-wide, 2 LS, 2 banks": 20484,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 20482,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 20484
+  },
+  "lms_f32_taps256_n1": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 32,
+   "+ 2 LS, 2 interleaved banks": 32,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 31,
+   "8-wide, 2 LS, 2 banks": 31,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 32,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 31
+  },
+  "biquad_cascade_df2T_f32_sos3_n128": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 2,
+   "+ 2 LS, 2 interleaved banks": 2,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 2,
+   "8-wide, 2 LS, 2 banks": 2,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 2,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 2
+  },
+  "biquad_cascade_df2T_f32_sos3_n1": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1,
+   "+ 2 LS, 2 interleaved banks": 1,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1,
+   "8-wide, 2 LS, 2 banks": 1,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1
+  },
+  "dct4_2048_f32": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 10726,
+   "+ 2 LS, 2 interleaved banks": 12656,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 10354,
+   "8-wide, 2 LS, 2 banks": 12640,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 10726,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 12640
+  },
+  "dct4_512_f32": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 2158,
+   "+ 2 LS, 2 interleaved banks": 2763,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 2220,
+   "8-wide, 2 LS, 2 banks": 2954,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 2158,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 2954
+  },
+  "rfft2048_f32": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 5098,
+   "+ 2 LS, 2 interleaved banks": 6132,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 4726,
+   "8-wide, 2 LS, 2 banks": 5606,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 5098,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 5606
+  },
+  "rfft512_f32": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 1102,
+   "+ 2 LS, 2 interleaved banks": 1483,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 1192,
+   "8-wide, 2 LS, 2 banks": 1607,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 1102,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 1607
+  },
+  "matmult-int": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 14792,
+   "+ 2 LS, 2 interleaved banks": 14568,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 14792,
+   "8-wide, 2 LS, 2 banks": 14568,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 14736,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 14512
+  },
+  "edn": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 5048,
+   "+ 2 LS, 2 interleaved banks": 4985,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 5094,
+   "8-wide, 2 LS, 2 banks": 4995,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 5248,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 5419
+  },
+  "dwconv3x3_i8": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 33552,
+   "+ 2 LS, 2 interleaved banks": 33569,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 33552,
+   "8-wide, 2 LS, 2 banks": 33617,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 33552,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 33617
+  },
+  "fir_q15": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 8192,
+   "+ 2 LS, 2 interleaved banks": 8192,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 8192,
+   "8-wide, 2 LS, 2 banks": 8192,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 8192,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 8192
+  },
+  "crc32": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 2,
+   "+ 2 LS, 2 interleaved banks": 4,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 2,
+   "8-wide, 2 LS, 2 banks": 4,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 2,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 4
+  },
+  "nettle-sha256": {
+   "+ 1 LS + 1 load-only, 2 interleaved banks": 2823,
+   "+ 2 LS, 2 interleaved banks": 2657,
+   "8-wide, 1 LS + 1 load-only, 2 banks": 2839,
+   "8-wide, 2 LS, 2 banks": 2665,
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": 2823,
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": 2665
+  }
+ },
+ "width_vs_ports": {
+  "w4_m1": 1.0,
+  "w4_m2": 1.3750458260351286,
+  "w4_m4": 1.5362191918720258,
+  "w8_m1": 1.0049223303082377,
+  "w8_m2": 1.3927359994664388,
+  "w8_m4": 1.6205320951380118,
+  "w16_m1": 1.0051163296647954,
+  "w16_m2": 1.3931607106884276,
+  "w16_m4": 1.6209263821008282
+ },
+ "width_vs_ports_by_group": {
+  "float DSP (team Embench suite)": {
+   "w4_m1": 1.0,
+   "w4_m2": 1.3746592316580435,
+   "w4_m4": 1.5732475776536168,
+   "w8_m1": 1.0062710797848895,
+   "w8_m2": 1.392500356405551,
+   "w8_m4": 1.6781382456991303,
+   "w16_m1": 1.0065559357071598,
+   "w16_m2": 1.3931352230197374,
+   "w16_m4": 1.6781879467948866
+  },
+  "integer DSP / ML": {
+   "w4_m1": 1.0,
+   "w4_m2": 1.5121105510757284,
+   "w4_m4": 1.6714684595527651,
+   "w8_m1": 1.003664408351876,
+   "w8_m2": 1.5397219084223868,
+   "w8_m4": 1.7565345591714645,
+   "w16_m1": 1.003664408351876,
+   "w16_m2": 1.5397219084223868,
+   "w16_m4": 1.75804192738172
+  },
+  "ALU / control": {
+   "w4_m1": 1.0,
+   "w4_m2": 1.138662516566509,
+   "w4_m4": 1.1519768744448915,
+   "w8_m1": 1.0007093800266575,
+   "w8_m2": 1.1404841591606845,
+   "w8_m4": 1.1582678988405573,
+   "w16_m1": 1.0008385204814507,
+   "w16_m2": 1.1406668046611805,
+   "w16_m4": 1.1583635483637262
+  }
+ },
+ "headers": {
+  "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+   "code_bytes": {
+    "16-bit hint (SB1)": 38758,
+    "32-bit header, 4 ops/header (P-bit chaining)": 44122,
+    "32-bit header + 2nd word above 4 ops": 44122
+   },
+   "crossing_per_1000_bundles": {
+    "16-bit hint (SB1)": 82.67536646269588,
+    "32-bit header, 4 ops/header (P-bit chaining)": 92.5829460618619,
+    "32-bit header + 2nd word above 4 ops": 92.5829460618619
+   },
+   "crossing_cycle_share": {
+    "16-bit hint (SB1)": 0.06542095828396075,
+    "32-bit header, 4 ops/header (P-bit chaining)": 0.07326081892666525,
+    "32-bit header + 2nd word above 4 ops": 0.07326081892666525
+   }
+  },
+  "8-wide, 2 LS, 2 banks": {
+   "code_bytes": {
+    "16-bit hint (SB1)": 39468,
+    "32-bit header, 4 ops/header (P-bit chaining)": 47230,
+    "32-bit header + 2nd word above 4 ops": 47230
+   },
+   "crossing_per_1000_bundles": {
+    "16-bit hint (SB1)": 159.64758986418198,
+    "32-bit header, 4 ops/header (P-bit chaining)": 182.35170950323538,
+    "32-bit header + 2nd word above 4 ops": 182.35170950323538
+   },
+   "crossing_cycle_share": {
+    "16-bit hint (SB1)": 0.09710744813735335,
+    "32-bit header, 4 ops/header (P-bit chaining)": 0.11091748512086996,
+    "32-bit header + 2nd word above 4 ops": 0.11091748512086996
+   }
+  }
+ },
+ "predication": {
+  "fir_f32_taps256_n128": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "fir_f32_taps256_n1": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "lms_f32_taps256_n128": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "lms_f32_taps256_n1": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "biquad_cascade_df2T_f32_sos3_n128": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "biquad_cascade_df2T_f32_sos3_n1": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "dct4_2048_f32": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "dct4_512_f32": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "rfft2048_f32": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "rfft512_f32": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "matmult-int": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "edn": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "dwconv3x3_i8": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "fir_q15": {
+   "static_hammocks": 2,
+   "dynamic": 1024,
+   "dynamic_taken": 773,
+   "penalty_cycles_sb1": 1546,
+   "share_of_sb1_cycles": 0.02894643224924638
+  },
+  "crc32": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  },
+  "nettle-sha256": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0,
+   "penalty_cycles_sb1": 0,
+   "share_of_sb1_cycles": 0.0
+  }
+ }
+}

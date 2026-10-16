@@ -1,0 +1,4738 @@
+{
+ "fir_f32_taps256_n128": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 233333,
+   "bundles": 232719,
+   "bank_conflicts": 0,
+   "branch_penalties": 164,
+   "icache_misses": 0,
+   "dcache_misses": 16,
+   "instructions": 232719,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 118580,
+  "blocks": 20,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 119454,
+    "bundles": 118580,
+    "bank_conflicts": 0,
+    "branch_penalties": 166,
+    "icache_misses": 0,
+    "dcache_misses": 16
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 85404,
+    "bundles": 71865,
+    "bank_conflicts": 0,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 628,
+     "32-bit header + 2nd word above 4 ops": 628
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4225,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4227,
+     "32-bit header + 2nd word above 4 ops": 4227
+    },
+    "ops_per_bundle": 1.65
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 77220,
+    "bundles": 71865,
+    "bank_conflicts": 0,
+    "branch_penalties": 166,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 628,
+     "32-bit header + 2nd word above 4 ops": 628
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4225,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4227,
+     "32-bit header + 2nd word above 4 ops": 4227
+    },
+    "ops_per_bundle": 1.65
+   },
+   "+ static BTFN prediction": {
+    "cycles": 77414,
+    "bundles": 71865,
+    "bank_conflicts": 0,
+    "branch_penalties": 263,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 628,
+     "32-bit header + 2nd word above 4 ops": 628
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4225,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4227,
+     "32-bit header + 2nd word above 4 ops": 4227
+    },
+    "ops_per_bundle": 1.65
+   },
+   "+ zero-overhead loops": {
+    "cycles": 76995,
+    "bundles": 71706,
+    "bank_conflicts": 0,
+    "branch_penalties": 133,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 540,
+     "32-bit header, 4 ops/header (P-bit chaining)": 616,
+     "32-bit header + 2nd word above 4 ops": 616
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4128,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4259,
+     "32-bit header + 2nd word above 4 ops": 4259
+    },
+    "ops_per_bundle": 1.594
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 68895,
+    "bundles": 43066,
+    "bank_conflicts": 16386,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 628,
+     "32-bit header + 2nd word above 4 ops": 628
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8352,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8353,
+     "32-bit header + 2nd word above 4 ops": 8353
+    },
+    "ops_per_bundle": 2.753
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 52509,
+    "bundles": 43066,
+    "bank_conflicts": 0,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 628,
+     "32-bit header + 2nd word above 4 ops": 628
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8352,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8353,
+     "32-bit header + 2nd word above 4 ops": 8353
+    },
+    "ops_per_bundle": 2.753
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 68513,
+    "bundles": 42684,
+    "bank_conflicts": 16386,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 648,
+     "32-bit header + 2nd word above 4 ops": 648
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8383,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8513,
+     "32-bit header + 2nd word above 4 ops": 8513
+    },
+    "ops_per_bundle": 2.778
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 52127,
+    "bundles": 42684,
+    "bank_conflicts": 0,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 648,
+     "32-bit header + 2nd word above 4 ops": 648
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8383,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8513,
+     "32-bit header + 2nd word above 4 ops": 8513
+    },
+    "ops_per_bundle": 2.778
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 85276,
+    "bundles": 71609,
+    "bank_conflicts": 0,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 548,
+     "32-bit header, 4 ops/header (P-bit chaining)": 632,
+     "32-bit header + 2nd word above 4 ops": 632
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4128,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4354,
+     "32-bit header + 2nd word above 4 ops": 4354
+    },
+    "ops_per_bundle": 1.656
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 68768,
+    "bundles": 42809,
+    "bank_conflicts": 16388,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 544,
+     "32-bit header, 4 ops/header (P-bit chaining)": 644,
+     "32-bit header + 2nd word above 4 ops": 644
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8224,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8483,
+     "32-bit header + 2nd word above 4 ops": 8483
+    },
+    "ops_per_bundle": 2.77
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 68386,
+    "bundles": 42427,
+    "bank_conflicts": 16388,
+    "branch_penalties": 4258,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 554,
+     "32-bit header, 4 ops/header (P-bit chaining)": 664,
+     "32-bit header + 2nd word above 4 ops": 664
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8193,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4387,
+     "32-bit header + 2nd word above 4 ops": 4387
+    },
+    "ops_per_bundle": 2.795
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 60240,
+    "bundles": 42907,
+    "bank_conflicts": 16386,
+    "branch_penalties": 10,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 540,
+     "32-bit header, 4 ops/header (P-bit chaining)": 616,
+     "32-bit header + 2nd word above 4 ops": 616
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8224,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8355,
+     "32-bit header + 2nd word above 4 ops": 8355
+    },
+    "ops_per_bundle": 2.664
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 59890,
+    "bundles": 42427,
+    "bank_conflicts": 16388,
+    "branch_penalties": 10,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 542,
+     "32-bit header, 4 ops/header (P-bit chaining)": 648,
+     "32-bit header + 2nd word above 4 ops": 648
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8255,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4387,
+     "32-bit header + 2nd word above 4 ops": 4387
+    },
+    "ops_per_bundle": 2.695
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 27122,
+    "bundles": 25918,
+    "bank_conflicts": 0,
+    "branch_penalties": 10,
+    "icache_misses": 0,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 532,
+     "32-bit header, 4 ops/header (P-bit chaining)": 640,
+     "32-bit header + 2nd word above 4 ops": 640
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8225,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8451,
+     "32-bit header + 2nd word above 4 ops": 8451
+    },
+    "ops_per_bundle": 4.411
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "fir_f32_taps256_n1": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 3407,
+   "bundles": 3357,
+   "bank_conflicts": 0,
+   "branch_penalties": 26,
+   "icache_misses": 0,
+   "dcache_misses": 0,
+   "instructions": 3357,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 1613,
+  "blocks": 19,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 1687,
+    "bundles": 1613,
+    "bank_conflicts": 0,
+    "branch_penalties": 28,
+    "icache_misses": 1,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 1313,
+    "bundles": 1126,
+    "bank_conflicts": 0,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 546,
+     "32-bit header, 4 ops/header (P-bit chaining)": 622,
+     "32-bit header + 2nd word above 4 ops": 622
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 64,
+     "32-bit header, 4 ops/header (P-bit chaining)": 36,
+     "32-bit header + 2nd word above 4 ops": 36
+    },
+    "ops_per_bundle": 1.433
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 1235,
+    "bundles": 1126,
+    "bank_conflicts": 0,
+    "branch_penalties": 28,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 546,
+     "32-bit header, 4 ops/header (P-bit chaining)": 622,
+     "32-bit header + 2nd word above 4 ops": 622
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 64,
+     "32-bit header, 4 ops/header (P-bit chaining)": 36,
+     "32-bit header + 2nd word above 4 ops": 36
+    },
+    "ops_per_bundle": 1.433
+   },
+   "+ static BTFN prediction": {
+    "cycles": 1197,
+    "bundles": 1126,
+    "bank_conflicts": 0,
+    "branch_penalties": 9,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 546,
+     "32-bit header, 4 ops/header (P-bit chaining)": 622,
+     "32-bit header + 2nd word above 4 ops": 622
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 64,
+     "32-bit header, 4 ops/header (P-bit chaining)": 36,
+     "32-bit header + 2nd word above 4 ops": 36
+    },
+    "ops_per_bundle": 1.433
+   },
+   "+ zero-overhead loops": {
+    "cycles": 1159,
+    "bundles": 1094,
+    "bank_conflicts": 0,
+    "branch_penalties": 6,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 536,
+     "32-bit header, 4 ops/header (P-bit chaining)": 610,
+     "32-bit header + 2nd word above 4 ops": 610
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 34,
+     "32-bit header, 4 ops/header (P-bit chaining)": 66,
+     "32-bit header + 2nd word above 4 ops": 66
+    },
+    "ops_per_bundle": 1.416
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 962,
+    "bundles": 775,
+    "bank_conflicts": 32,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 546,
+     "32-bit header, 4 ops/header (P-bit chaining)": 622,
+     "32-bit header + 2nd word above 4 ops": 622
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 66,
+     "32-bit header, 4 ops/header (P-bit chaining)": 67,
+     "32-bit header + 2nd word above 4 ops": 67
+    },
+    "ops_per_bundle": 2.081
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 930,
+    "bundles": 775,
+    "bank_conflicts": 0,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 546,
+     "32-bit header, 4 ops/header (P-bit chaining)": 622,
+     "32-bit header + 2nd word above 4 ops": 622
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 66,
+     "32-bit header, 4 ops/header (P-bit chaining)": 67,
+     "32-bit header + 2nd word above 4 ops": 67
+    },
+    "ops_per_bundle": 2.081
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 834,
+    "bundles": 647,
+    "bank_conflicts": 32,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 556,
+     "32-bit header, 4 ops/header (P-bit chaining)": 642,
+     "32-bit header + 2nd word above 4 ops": 642
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 127,
+     "32-bit header, 4 ops/header (P-bit chaining)": 130,
+     "32-bit header + 2nd word above 4 ops": 130
+    },
+    "ops_per_bundle": 2.493
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 802,
+    "bundles": 647,
+    "bank_conflicts": 0,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 556,
+     "32-bit header, 4 ops/header (P-bit chaining)": 642,
+     "32-bit header + 2nd word above 4 ops": 642
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 127,
+     "32-bit header, 4 ops/header (P-bit chaining)": 130,
+     "32-bit header + 2nd word above 4 ops": 130
+    },
+    "ops_per_bundle": 2.493
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 1312,
+    "bundles": 1123,
+    "bank_conflicts": 0,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 544,
+     "32-bit header, 4 ops/header (P-bit chaining)": 630,
+     "32-bit header + 2nd word above 4 ops": 630
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 65,
+     "32-bit header, 4 ops/header (P-bit chaining)": 36,
+     "32-bit header + 2nd word above 4 ops": 36
+    },
+    "ops_per_bundle": 1.436
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 959,
+    "bundles": 771,
+    "bank_conflicts": 31,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 540,
+     "32-bit header, 4 ops/header (P-bit chaining)": 642,
+     "32-bit header + 2nd word above 4 ops": 642
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 97,
+     "32-bit header, 4 ops/header (P-bit chaining)": 99,
+     "32-bit header + 2nd word above 4 ops": 99
+    },
+    "ops_per_bundle": 2.092
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 831,
+    "bundles": 643,
+    "bank_conflicts": 31,
+    "branch_penalties": 67,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 550,
+     "32-bit header, 4 ops/header (P-bit chaining)": 662,
+     "32-bit header + 2nd word above 4 ops": 662
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 127,
+     "32-bit header, 4 ops/header (P-bit chaining)": 99,
+     "32-bit header + 2nd word above 4 ops": 99
+    },
+    "ops_per_bundle": 2.509
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 806,
+    "bundles": 743,
+    "bank_conflicts": 32,
+    "branch_penalties": 5,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 536,
+     "32-bit header, 4 ops/header (P-bit chaining)": 610,
+     "32-bit header + 2nd word above 4 ops": 610
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 97,
+     "32-bit header, 4 ops/header (P-bit chaining)": 98,
+     "32-bit header + 2nd word above 4 ops": 98
+    },
+    "ops_per_bundle": 2.085
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 707,
+    "bundles": 643,
+    "bank_conflicts": 31,
+    "branch_penalties": 5,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 538,
+     "32-bit header, 4 ops/header (P-bit chaining)": 646,
+     "32-bit header + 2nd word above 4 ops": 646
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 97,
+     "32-bit header, 4 ops/header (P-bit chaining)": 98,
+     "32-bit header + 2nd word above 4 ops": 98
+    },
+    "ops_per_bundle": 2.409
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 425,
+    "bundles": 390,
+    "bank_conflicts": 0,
+    "branch_penalties": 5,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 528,
+     "32-bit header, 4 ops/header (P-bit chaining)": 638,
+     "32-bit header + 2nd word above 4 ops": 638
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 98,
+     "32-bit header, 4 ops/header (P-bit chaining)": 97,
+     "32-bit header + 2nd word above 4 ops": 97
+    },
+    "ops_per_bundle": 3.972
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "lms_f32_taps256_n128": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 497306,
+   "bundles": 496020,
+   "bank_conflicts": 0,
+   "branch_penalties": 301,
+   "icache_misses": 1,
+   "dcache_misses": 30,
+   "instructions": 496020,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 267585,
+  "blocks": 22,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 268749,
+    "bundles": 267585,
+    "bank_conflicts": 0,
+    "branch_penalties": 304,
+    "icache_misses": 1,
+    "dcache_misses": 30
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 196777,
+    "bundles": 174912,
+    "bank_conflicts": 0,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 798,
+     "32-bit header, 4 ops/header (P-bit chaining)": 910,
+     "32-bit header + 2nd word above 4 ops": 910
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16515,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12578,
+     "32-bit header + 2nd word above 4 ops": 12578
+    },
+    "ops_per_bundle": 1.53
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 180677,
+    "bundles": 174912,
+    "bank_conflicts": 0,
+    "branch_penalties": 304,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 798,
+     "32-bit header, 4 ops/header (P-bit chaining)": 910,
+     "32-bit header + 2nd word above 4 ops": 910
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16515,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12578,
+     "32-bit header + 2nd word above 4 ops": 12578
+    },
+    "ops_per_bundle": 1.53
+   },
+   "+ static BTFN prediction": {
+    "cycles": 181107,
+    "bundles": 174912,
+    "bank_conflicts": 0,
+    "branch_penalties": 519,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 798,
+     "32-bit header, 4 ops/header (P-bit chaining)": 910,
+     "32-bit header + 2nd word above 4 ops": 910
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16515,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12578,
+     "32-bit header + 2nd word above 4 ops": 12578
+    },
+    "ops_per_bundle": 1.53
+   },
+   "+ zero-overhead loops": {
+    "cycles": 176336,
+    "bundles": 170657,
+    "bank_conflicts": 0,
+    "branch_penalties": 261,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 784,
+     "32-bit header, 4 ops/header (P-bit chaining)": 894,
+     "32-bit header + 2nd word above 4 ops": 894
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12420,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12547,
+     "32-bit header + 2nd word above 4 ops": 12547
+    },
+    "ops_per_bundle": 1.519
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 151592,
+    "bundles": 113341,
+    "bank_conflicts": 20482,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 802,
+     "32-bit header, 4 ops/header (P-bit chaining)": 918,
+     "32-bit header + 2nd word above 4 ops": 918
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16418,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16674,
+     "32-bit header + 2nd word above 4 ops": 16674
+    },
+    "ops_per_bundle": 2.361
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 131110,
+    "bundles": 113341,
+    "bank_conflicts": 0,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 802,
+     "32-bit header, 4 ops/header (P-bit chaining)": 918,
+     "32-bit header + 2nd word above 4 ops": 918
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16418,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16674,
+     "32-bit header + 2nd word above 4 ops": 16674
+    },
+    "ops_per_bundle": 2.361
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 134825,
+    "bundles": 96574,
+    "bank_conflicts": 20482,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 818,
+     "32-bit header, 4 ops/header (P-bit chaining)": 950,
+     "32-bit header + 2nd word above 4 ops": 950
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16704,
+     "32-bit header, 4 ops/header (P-bit chaining)": 20738,
+     "32-bit header + 2nd word above 4 ops": 20738
+    },
+    "ops_per_bundle": 2.771
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 114343,
+    "bundles": 96574,
+    "bank_conflicts": 0,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 818,
+     "32-bit header, 4 ops/header (P-bit chaining)": 950,
+     "32-bit header + 2nd word above 4 ops": 950
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16704,
+     "32-bit header, 4 ops/header (P-bit chaining)": 20738,
+     "32-bit header + 2nd word above 4 ops": 20738
+    },
+    "ops_per_bundle": 2.771
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 196641,
+    "bundles": 174399,
+    "bank_conflicts": 0,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 914,
+     "32-bit header + 2nd word above 4 ops": 914
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12418,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12545,
+     "32-bit header + 2nd word above 4 ops": 12545
+    },
+    "ops_per_bundle": 1.534
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 151457,
+    "bundles": 112827,
+    "bank_conflicts": 20484,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 934,
+     "32-bit header + 2nd word above 4 ops": 934
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8353,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16643,
+     "32-bit header + 2nd word above 4 ops": 16643
+    },
+    "ops_per_bundle": 2.372
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 134690,
+    "bundles": 96060,
+    "bank_conflicts": 20484,
+    "branch_penalties": 8354,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 806,
+     "32-bit header, 4 ops/header (P-bit chaining)": 966,
+     "32-bit header + 2nd word above 4 ops": 966
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16576,
+     "32-bit header, 4 ops/header (P-bit chaining)": 20801,
+     "32-bit header + 2nd word above 4 ops": 20801
+    },
+    "ops_per_bundle": 2.786
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 130653,
+    "bundles": 109086,
+    "bank_conflicts": 20482,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 788,
+     "32-bit header, 4 ops/header (P-bit chaining)": 902,
+     "32-bit header + 2nd word above 4 ops": 902
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16420,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16801,
+     "32-bit header + 2nd word above 4 ops": 16801
+    },
+    "ops_per_bundle": 2.376
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 117878,
+    "bundles": 95932,
+    "bank_conflicts": 20484,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 788,
+     "32-bit header, 4 ops/header (P-bit chaining)": 942,
+     "32-bit header + 2nd word above 4 ops": 942
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16516,
+     "32-bit header, 4 ops/header (P-bit chaining)": 20768,
+     "32-bit header + 2nd word above 4 ops": 20768
+    },
+    "ops_per_bundle": 2.702
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 60533,
+    "bundles": 58943,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 30,
+    "code_bytes": {
+     "16-bit hint (SB1)": 764,
+     "32-bit header, 4 ops/header (P-bit chaining)": 926,
+     "32-bit header + 2nd word above 4 ops": 926
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16674,
+     "32-bit header, 4 ops/header (P-bit chaining)": 20899,
+     "32-bit header + 2nd word above 4 ops": 20899
+    },
+    "ops_per_bundle": 4.398
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "lms_f32_taps256_n1": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 5505,
+   "bundles": 5418,
+   "bank_conflicts": 0,
+   "branch_penalties": 35,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 5418,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 2789,
+  "blocks": 21,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 2885,
+    "bundles": 2789,
+    "bank_conflicts": 0,
+    "branch_penalties": 40,
+    "icache_misses": 1,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 2188,
+    "bundles": 1937,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 900,
+     "32-bit header + 2nd word above 4 ops": 900
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 68,
+     "32-bit header, 4 ops/header (P-bit chaining)": 134,
+     "32-bit header + 2nd word above 4 ops": 134
+    },
+    "ops_per_bundle": 1.44
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 2070,
+    "bundles": 1937,
+    "bank_conflicts": 0,
+    "branch_penalties": 40,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 900,
+     "32-bit header + 2nd word above 4 ops": 900
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 68,
+     "32-bit header, 4 ops/header (P-bit chaining)": 134,
+     "32-bit header + 2nd word above 4 ops": 134
+    },
+    "ops_per_bundle": 1.44
+   },
+   "+ static BTFN prediction": {
+    "cycles": 2012,
+    "bundles": 1937,
+    "bank_conflicts": 0,
+    "branch_penalties": 11,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 900,
+     "32-bit header + 2nd word above 4 ops": 900
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 68,
+     "32-bit header, 4 ops/header (P-bit chaining)": 134,
+     "32-bit header + 2nd word above 4 ops": 134
+    },
+    "ops_per_bundle": 1.44
+   },
+   "+ zero-overhead loops": {
+    "cycles": 1940,
+    "bundles": 1873,
+    "bank_conflicts": 0,
+    "branch_penalties": 7,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 776,
+     "32-bit header, 4 ops/header (P-bit chaining)": 884,
+     "32-bit header + 2nd word above 4 ops": 884
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 38,
+     "32-bit header, 4 ops/header (P-bit chaining)": 131,
+     "32-bit header + 2nd word above 4 ops": 131
+    },
+    "ops_per_bundle": 1.438
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 1577,
+    "bundles": 1326,
+    "bank_conflicts": 32,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 794,
+     "32-bit header, 4 ops/header (P-bit chaining)": 908,
+     "32-bit header + 2nd word above 4 ops": 908
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 134,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 2.103
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 1545,
+    "bundles": 1326,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 794,
+     "32-bit header, 4 ops/header (P-bit chaining)": 908,
+     "32-bit header + 2nd word above 4 ops": 908
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 134,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 2.103
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 1320,
+    "bundles": 1069,
+    "bank_conflicts": 32,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 808,
+     "32-bit header, 4 ops/header (P-bit chaining)": 936,
+     "32-bit header + 2nd word above 4 ops": 936
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 194,
+     "32-bit header, 4 ops/header (P-bit chaining)": 228,
+     "32-bit header + 2nd word above 4 ops": 228
+    },
+    "ops_per_bundle": 2.609
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 1288,
+    "bundles": 1069,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 808,
+     "32-bit header, 4 ops/header (P-bit chaining)": 936,
+     "32-bit header + 2nd word above 4 ops": 936
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 194,
+     "32-bit header, 4 ops/header (P-bit chaining)": 228,
+     "32-bit header + 2nd word above 4 ops": 228
+    },
+    "ops_per_bundle": 2.609
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 2186,
+    "bundles": 1933,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 784,
+     "32-bit header, 4 ops/header (P-bit chaining)": 908,
+     "32-bit header + 2nd word above 4 ops": 908
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 103,
+     "32-bit header, 4 ops/header (P-bit chaining)": 101,
+     "32-bit header + 2nd word above 4 ops": 101
+    },
+    "ops_per_bundle": 1.443
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 1573,
+    "bundles": 1321,
+    "bank_conflicts": 31,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 784,
+     "32-bit header, 4 ops/header (P-bit chaining)": 928,
+     "32-bit header + 2nd word above 4 ops": 928
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 135,
+     "32-bit header, 4 ops/header (P-bit chaining)": 133,
+     "32-bit header + 2nd word above 4 ops": 133
+    },
+    "ops_per_bundle": 2.111
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 1316,
+    "bundles": 1064,
+    "bank_conflicts": 31,
+    "branch_penalties": 99,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 800,
+     "32-bit header, 4 ops/header (P-bit chaining)": 960,
+     "32-bit header + 2nd word above 4 ops": 960
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 166,
+     "32-bit header, 4 ops/header (P-bit chaining)": 226,
+     "32-bit header + 2nd word above 4 ops": 226
+    },
+    "ops_per_bundle": 2.621
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 1327,
+    "bundles": 1262,
+    "bank_conflicts": 32,
+    "branch_penalties": 6,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 780,
+     "32-bit header, 4 ops/header (P-bit chaining)": 892,
+     "32-bit header + 2nd word above 4 ops": 892
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 163,
+     "32-bit header, 4 ops/header (P-bit chaining)": 166,
+     "32-bit header + 2nd word above 4 ops": 166
+    },
+    "ops_per_bundle": 2.134
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 1129,
+    "bundles": 1063,
+    "bank_conflicts": 31,
+    "branch_penalties": 6,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 782,
+     "32-bit header, 4 ops/header (P-bit chaining)": 936,
+     "32-bit header + 2nd word above 4 ops": 936
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 165,
+     "32-bit header, 4 ops/header (P-bit chaining)": 197,
+     "32-bit header + 2nd word above 4 ops": 197
+    },
+    "ops_per_bundle": 2.533
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 686,
+    "bundles": 650,
+    "bank_conflicts": 0,
+    "branch_penalties": 6,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 758,
+     "32-bit header, 4 ops/header (P-bit chaining)": 920,
+     "32-bit header + 2nd word above 4 ops": 920
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 162,
+     "32-bit header, 4 ops/header (P-bit chaining)": 198,
+     "32-bit header + 2nd word above 4 ops": 198
+    },
+    "ops_per_bundle": 4.143
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "biquad_cascade_df2T_f32_sos3_n128": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 5409,
+   "bundles": 4671,
+   "bank_conflicts": 0,
+   "branch_penalties": 25,
+   "icache_misses": 1,
+   "dcache_misses": 16,
+   "instructions": 4671,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 3528,
+  "blocks": 9,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 3882,
+    "bundles": 3528,
+    "bank_conflicts": 0,
+    "branch_penalties": 25,
+    "icache_misses": 1,
+    "dcache_misses": 16
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 3719,
+    "bundles": 1872,
+    "bank_conflicts": 0,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 276,
+     "32-bit header, 4 ops/header (P-bit chaining)": 312,
+     "32-bit header + 2nd word above 4 ops": 312
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.885
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 3562,
+    "bundles": 1872,
+    "bank_conflicts": 0,
+    "branch_penalties": 25,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 276,
+     "32-bit header, 4 ops/header (P-bit chaining)": 312,
+     "32-bit header + 2nd word above 4 ops": 312
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.885
+   },
+   "+ static BTFN prediction": {
+    "cycles": 3536,
+    "bundles": 1872,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 276,
+     "32-bit header, 4 ops/header (P-bit chaining)": 312,
+     "32-bit header + 2nd word above 4 ops": 312
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.885
+   },
+   "+ zero-overhead loops": {
+    "cycles": 3533,
+    "bundles": 1872,
+    "bank_conflicts": 0,
+    "branch_penalties": 9,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 272,
+     "32-bit header, 4 ops/header (P-bit chaining)": 306,
+     "32-bit header + 2nd word above 4 ops": 306
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.833
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 3708,
+    "bundles": 1763,
+    "bank_conflicts": 2,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 286,
+     "32-bit header, 4 ops/header (P-bit chaining)": 332,
+     "32-bit header + 2nd word above 4 ops": 332
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 2.001
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 3706,
+    "bundles": 1763,
+    "bank_conflicts": 0,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 286,
+     "32-bit header, 4 ops/header (P-bit chaining)": 332,
+     "32-bit header + 2nd word above 4 ops": 332
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 2.001
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 3705,
+    "bundles": 1760,
+    "bank_conflicts": 2,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 284,
+     "32-bit header, 4 ops/header (P-bit chaining)": 328,
+     "32-bit header + 2nd word above 4 ops": 328
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 197,
+     "32-bit header + 2nd word above 4 ops": 197
+    },
+    "ops_per_bundle": 2.005
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 3703,
+    "bundles": 1760,
+    "bank_conflicts": 0,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 284,
+     "32-bit header, 4 ops/header (P-bit chaining)": 328,
+     "32-bit header + 2nd word above 4 ops": 328
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 197,
+     "32-bit header + 2nd word above 4 ops": 197
+    },
+    "ops_per_bundle": 2.005
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 3719,
+    "bundles": 1872,
+    "bank_conflicts": 0,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 276,
+     "32-bit header, 4 ops/header (P-bit chaining)": 312,
+     "32-bit header + 2nd word above 4 ops": 312
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.885
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 3708,
+    "bundles": 1763,
+    "bank_conflicts": 2,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 286,
+     "32-bit header, 4 ops/header (P-bit chaining)": 332,
+     "32-bit header + 2nd word above 4 ops": 332
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 2.001
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 3705,
+    "bundles": 1760,
+    "bank_conflicts": 2,
+    "branch_penalties": 102,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 284,
+     "32-bit header, 4 ops/header (P-bit chaining)": 328,
+     "32-bit header + 2nd word above 4 ops": 328
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 195,
+     "32-bit header, 4 ops/header (P-bit chaining)": 197,
+     "32-bit header + 2nd word above 4 ops": 197
+    },
+    "ops_per_bundle": 2.005
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 3518,
+    "bundles": 1763,
+    "bank_conflicts": 2,
+    "branch_penalties": 7,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 282,
+     "32-bit header, 4 ops/header (P-bit chaining)": 326,
+     "32-bit header + 2nd word above 4 ops": 326
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 99,
+     "32-bit header, 4 ops/header (P-bit chaining)": 197,
+     "32-bit header + 2nd word above 4 ops": 197
+    },
+    "ops_per_bundle": 1.947
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 3515,
+    "bundles": 1760,
+    "bank_conflicts": 2,
+    "branch_penalties": 7,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 280,
+     "32-bit header, 4 ops/header (P-bit chaining)": 322,
+     "32-bit header + 2nd word above 4 ops": 322
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 99,
+     "32-bit header, 4 ops/header (P-bit chaining)": 195,
+     "32-bit header + 2nd word above 4 ops": 195
+    },
+    "ops_per_bundle": 1.95
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 3507,
+    "bundles": 1753,
+    "bank_conflicts": 0,
+    "branch_penalties": 7,
+    "icache_misses": 1,
+    "dcache_misses": 16,
+    "code_bytes": {
+     "16-bit hint (SB1)": 274,
+     "32-bit header, 4 ops/header (P-bit chaining)": 314,
+     "32-bit header + 2nd word above 4 ops": 314
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 198,
+     "32-bit header, 4 ops/header (P-bit chaining)": 291,
+     "32-bit header + 2nd word above 4 ops": 291
+    },
+    "ops_per_bundle": 1.958
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "biquad_cascade_df2T_f32_sos3_n1": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 126,
+   "bundles": 99,
+   "bank_conflicts": 0,
+   "branch_penalties": 4,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 99,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 114,
+  "blocks": 10,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 150,
+    "bundles": 114,
+    "bank_conflicts": 0,
+    "branch_penalties": 10,
+    "icache_misses": 1,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 121,
+    "bundles": 69,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 168,
+     "32-bit header, 4 ops/header (P-bit chaining)": 188,
+     "32-bit header + 2nd word above 4 ops": 188
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 0,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 1.652
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 117,
+    "bundles": 69,
+    "bank_conflicts": 0,
+    "branch_penalties": 10,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 168,
+     "32-bit header, 4 ops/header (P-bit chaining)": 188,
+     "32-bit header + 2nd word above 4 ops": 188
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 0,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 1.652
+   },
+   "+ static BTFN prediction": {
+    "cycles": 121,
+    "bundles": 69,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 168,
+     "32-bit header, 4 ops/header (P-bit chaining)": 188,
+     "32-bit header + 2nd word above 4 ops": 188
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 0,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 1.652
+   },
+   "+ zero-overhead loops": {
+    "cycles": 121,
+    "bundles": 69,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 168,
+     "32-bit header, 4 ops/header (P-bit chaining)": 188,
+     "32-bit header + 2nd word above 4 ops": 188
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 0,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 1.652
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 109,
+    "bundles": 56,
+    "bank_conflicts": 1,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 176,
+     "32-bit header, 4 ops/header (P-bit chaining)": 204,
+     "32-bit header + 2nd word above 4 ops": 204
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 2.036
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 108,
+    "bundles": 56,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 176,
+     "32-bit header, 4 ops/header (P-bit chaining)": 204,
+     "32-bit header + 2nd word above 4 ops": 204
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 2.036
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 106,
+    "bundles": 53,
+    "bank_conflicts": 1,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 174,
+     "32-bit header, 4 ops/header (P-bit chaining)": 200,
+     "32-bit header + 2nd word above 4 ops": 200
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8,
+     "32-bit header + 2nd word above 4 ops": 8
+    },
+    "ops_per_bundle": 2.151
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 105,
+    "bundles": 53,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 174,
+     "32-bit header, 4 ops/header (P-bit chaining)": 200,
+     "32-bit header + 2nd word above 4 ops": 200
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8,
+     "32-bit header + 2nd word above 4 ops": 8
+    },
+    "ops_per_bundle": 2.151
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 121,
+    "bundles": 69,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 168,
+     "32-bit header, 4 ops/header (P-bit chaining)": 188,
+     "32-bit header + 2nd word above 4 ops": 188
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 0,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 1.652
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 109,
+    "bundles": 56,
+    "bank_conflicts": 1,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 176,
+     "32-bit header, 4 ops/header (P-bit chaining)": 204,
+     "32-bit header + 2nd word above 4 ops": 204
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 2.036
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 106,
+    "bundles": 53,
+    "bank_conflicts": 1,
+    "branch_penalties": 12,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 174,
+     "32-bit header, 4 ops/header (P-bit chaining)": 200,
+     "32-bit header + 2nd word above 4 ops": 200
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8,
+     "32-bit header + 2nd word above 4 ops": 8
+    },
+    "ops_per_bundle": 2.151
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 105,
+    "bundles": 56,
+    "bank_conflicts": 1,
+    "branch_penalties": 10,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 176,
+     "32-bit header, 4 ops/header (P-bit chaining)": 204,
+     "32-bit header + 2nd word above 4 ops": 204
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6,
+     "32-bit header + 2nd word above 4 ops": 6
+    },
+    "ops_per_bundle": 2.036
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 102,
+    "bundles": 53,
+    "bank_conflicts": 1,
+    "branch_penalties": 10,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 174,
+     "32-bit header, 4 ops/header (P-bit chaining)": 200,
+     "32-bit header + 2nd word above 4 ops": 200
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8,
+     "32-bit header + 2nd word above 4 ops": 8
+    },
+    "ops_per_bundle": 2.151
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 95,
+    "bundles": 46,
+    "bank_conflicts": 0,
+    "branch_penalties": 10,
+    "icache_misses": 1,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 170,
+     "32-bit header, 4 ops/header (P-bit chaining)": 196,
+     "32-bit header + 2nd word above 4 ops": 196
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5,
+     "32-bit header + 2nd word above 4 ops": 5
+    },
+    "ops_per_bundle": 2.478
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "dct4_2048_f32": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 301610,
+   "bundles": 247359,
+   "bank_conflicts": 0,
+   "branch_penalties": 194,
+   "icache_misses": 44,
+   "dcache_misses": 1997,
+   "instructions": 247359,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 190674,
+  "blocks": 89,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 243000,
+    "bundles": 190674,
+    "bank_conflicts": 0,
+    "branch_penalties": 198,
+    "icache_misses": 83,
+    "dcache_misses": 2017
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 160936,
+    "bundles": 98821,
+    "bank_conflicts": 0,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2017,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5394,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6084,
+     "32-bit header + 2nd word above 4 ops": 6084
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8368,
+     "32-bit header, 4 ops/header (P-bit chaining)": 9034,
+     "32-bit header + 2nd word above 4 ops": 9034
+    },
+    "ops_per_bundle": 1.929
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 154250,
+    "bundles": 98821,
+    "bank_conflicts": 0,
+    "branch_penalties": 198,
+    "icache_misses": 83,
+    "dcache_misses": 2017,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5394,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6084,
+     "32-bit header + 2nd word above 4 ops": 6084
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8368,
+     "32-bit header, 4 ops/header (P-bit chaining)": 9034,
+     "32-bit header + 2nd word above 4 ops": 9034
+    },
+    "ops_per_bundle": 1.929
+   },
+   "+ static BTFN prediction": {
+    "cycles": 154262,
+    "bundles": 98821,
+    "bank_conflicts": 0,
+    "branch_penalties": 204,
+    "icache_misses": 83,
+    "dcache_misses": 2017,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5394,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6084,
+     "32-bit header + 2nd word above 4 ops": 6084
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8368,
+     "32-bit header, 4 ops/header (P-bit chaining)": 9034,
+     "32-bit header + 2nd word above 4 ops": 9034
+    },
+    "ops_per_bundle": 1.929
+   },
+   "+ zero-overhead loops": {
+    "cycles": 150277,
+    "bundles": 95160,
+    "bank_conflicts": 0,
+    "branch_penalties": 42,
+    "icache_misses": 83,
+    "dcache_misses": 2017,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5332,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6022,
+     "32-bit header + 2nd word above 4 ops": 6022
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 7709,
+     "32-bit header, 4 ops/header (P-bit chaining)": 11818,
+     "32-bit header + 2nd word above 4 ops": 11818
+    },
+    "ops_per_bundle": 1.965
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 149263,
+    "bundles": 76896,
+    "bank_conflicts": 10726,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5424,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6144,
+     "32-bit header + 2nd word above 4 ops": 6144
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 10587,
+     "32-bit header, 4 ops/header (P-bit chaining)": 10092,
+     "32-bit header + 2nd word above 4 ops": 10092
+    },
+    "ops_per_bundle": 2.48
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 138792,
+    "bundles": 76896,
+    "bank_conflicts": 0,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5424,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6144,
+     "32-bit header + 2nd word above 4 ops": 6144
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 10587,
+     "32-bit header, 4 ops/header (P-bit chaining)": 10092,
+     "32-bit header + 2nd word above 4 ops": 10092
+    },
+    "ops_per_bundle": 2.48
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 139304,
+    "bundles": 64770,
+    "bank_conflicts": 12656,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5520,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6336,
+     "32-bit header + 2nd word above 4 ops": 6336
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 11443,
+     "32-bit header, 4 ops/header (P-bit chaining)": 13384,
+     "32-bit header + 2nd word above 4 ops": 13384
+    },
+    "ops_per_bundle": 2.944
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 126903,
+    "bundles": 64770,
+    "bank_conflicts": 0,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5520,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6336,
+     "32-bit header + 2nd word above 4 ops": 6336
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 11443,
+     "32-bit header, 4 ops/header (P-bit chaining)": 13384,
+     "32-bit header + 2nd word above 4 ops": 13384
+    },
+    "ops_per_bundle": 2.944
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 159752,
+    "bundles": 97400,
+    "bank_conflicts": 0,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2017,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5358,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6136,
+     "32-bit header + 2nd word above 4 ops": 6136
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 8456,
+     "32-bit header, 4 ops/header (P-bit chaining)": 10542,
+     "32-bit header + 2nd word above 4 ops": 10542
+    },
+    "ops_per_bundle": 1.958
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 146848,
+    "bundles": 73899,
+    "bank_conflicts": 10354,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5376,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6284,
+     "32-bit header + 2nd word above 4 ops": 6284
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 11315,
+     "32-bit header, 4 ops/header (P-bit chaining)": 10977,
+     "32-bit header + 2nd word above 4 ops": 10977
+    },
+    "ops_per_bundle": 2.58
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 137122,
+    "bundles": 61174,
+    "bank_conflicts": 12640,
+    "branch_penalties": 3541,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5462,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6468,
+     "32-bit header + 2nd word above 4 ops": 6468
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 11826,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12480,
+     "32-bit header + 2nd word above 4 ops": 12480
+    },
+    "ops_per_bundle": 3.117
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 138580,
+    "bundles": 73235,
+    "bank_conflicts": 10726,
+    "branch_penalties": 30,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5362,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6082,
+     "32-bit header + 2nd word above 4 ops": 6082
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 9797,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12073,
+     "32-bit header + 2nd word above 4 ops": 12073
+    },
+    "ops_per_bundle": 2.554
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 128290,
+    "bundles": 59363,
+    "bank_conflicts": 12640,
+    "branch_penalties": 30,
+    "icache_misses": 83,
+    "dcache_misses": 2018,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5386,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6378,
+     "32-bit header + 2nd word above 4 ops": 6378
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 10190,
+     "32-bit header, 4 ops/header (P-bit chaining)": 15050,
+     "32-bit header + 2nd word above 4 ops": 15050
+    },
+    "ops_per_bundle": 3.15
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 106210,
+    "bundles": 47742,
+    "bank_conflicts": 0,
+    "branch_penalties": 30,
+    "icache_misses": 83,
+    "dcache_misses": 2019,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5242,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6250,
+     "32-bit header + 2nd word above 4 ops": 6222
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 11263,
+     "32-bit header, 4 ops/header (P-bit chaining)": 13966,
+     "32-bit header + 2nd word above 4 ops": 13885
+    },
+    "ops_per_bundle": 3.917
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "dct4_512_f32": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 63579,
+   "bundles": 56731,
+   "bank_conflicts": 0,
+   "branch_penalties": 171,
+   "icache_misses": 53,
+   "dcache_misses": 262,
+   "instructions": 56731,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 42700,
+  "blocks": 86,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 49508,
+    "bundles": 42700,
+    "bank_conflicts": 0,
+    "branch_penalties": 174,
+    "icache_misses": 92,
+    "dcache_misses": 265
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 31117,
+    "bundles": 22717,
+    "bank_conflicts": 0,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5988,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6758,
+     "32-bit header + 2nd word above 4 ops": 6758
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1896,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2176,
+     "32-bit header + 2nd word above 4 ops": 2176
+    },
+    "ops_per_bundle": 1.88
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 29731,
+    "bundles": 22717,
+    "bank_conflicts": 0,
+    "branch_penalties": 174,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5988,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6758,
+     "32-bit header + 2nd word above 4 ops": 6758
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1896,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2176,
+     "32-bit header + 2nd word above 4 ops": 2176
+    },
+    "ops_per_bundle": 1.88
+   },
+   "+ static BTFN prediction": {
+    "cycles": 29581,
+    "bundles": 22717,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5988,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6758,
+     "32-bit header + 2nd word above 4 ops": 6758
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1896,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2176,
+     "32-bit header + 2nd word above 4 ops": 2176
+    },
+    "ops_per_bundle": 1.88
+   },
+   "+ zero-overhead loops": {
+    "cycles": 28609,
+    "bundles": 21847,
+    "bank_conflicts": 0,
+    "branch_penalties": 48,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5934,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6704,
+     "32-bit header + 2nd word above 4 ops": 6704
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2060,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2383,
+     "32-bit header + 2nd word above 4 ops": 2383
+    },
+    "ops_per_bundle": 1.915
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 28338,
+    "bundles": 17525,
+    "bank_conflicts": 2158,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5986,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6754,
+     "32-bit header + 2nd word above 4 ops": 6754
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2073,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2366,
+     "32-bit header + 2nd word above 4 ops": 2366
+    },
+    "ops_per_bundle": 2.437
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 26180,
+    "bundles": 17525,
+    "bank_conflicts": 0,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5986,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6754,
+     "32-bit header + 2nd word above 4 ops": 6754
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2073,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2366,
+     "32-bit header + 2nd word above 4 ops": 2366
+    },
+    "ops_per_bundle": 2.437
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 25808,
+    "bundles": 14390,
+    "bank_conflicts": 2763,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 6098,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6978,
+     "32-bit header + 2nd word above 4 ops": 6978
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2542,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2943,
+     "32-bit header + 2nd word above 4 ops": 2943
+    },
+    "ops_per_bundle": 2.967
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 23045,
+    "bundles": 14390,
+    "bank_conflicts": 0,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 6098,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6978,
+     "32-bit header + 2nd word above 4 ops": 6978
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2542,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2943,
+     "32-bit header + 2nd word above 4 ops": 2943
+    },
+    "ops_per_bundle": 2.967
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 30771,
+    "bundles": 22371,
+    "bank_conflicts": 0,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5938,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6850,
+     "32-bit header + 2nd word above 4 ops": 6850
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1784,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2419,
+     "32-bit header + 2nd word above 4 ops": 2419
+    },
+    "ops_per_bundle": 1.909
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 27724,
+    "bundles": 16817,
+    "bank_conflicts": 2220,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5924,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6910,
+     "32-bit header + 2nd word above 4 ops": 6910
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2275,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2522,
+     "32-bit header + 2nd word above 4 ops": 2522
+    },
+    "ops_per_bundle": 2.539
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 25494,
+    "bundles": 13797,
+    "bank_conflicts": 2954,
+    "branch_penalties": 867,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 6032,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7130,
+     "32-bit header + 2nd word above 4 ops": 7130
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2707,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3025,
+     "32-bit header + 2nd word above 4 ops": 3025
+    },
+    "ops_per_bundle": 3.095
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 25802,
+    "bundles": 16655,
+    "bank_conflicts": 2158,
+    "branch_penalties": 34,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5932,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6700,
+     "32-bit header + 2nd word above 4 ops": 6700
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2248,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2730,
+     "32-bit header + 2nd word above 4 ops": 2730
+    },
+    "ops_per_bundle": 2.512
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 23409,
+    "bundles": 13378,
+    "bank_conflicts": 2954,
+    "branch_penalties": 34,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5962,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7044,
+     "32-bit header + 2nd word above 4 ops": 7044
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2132,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3137,
+     "32-bit header + 2nd word above 4 ops": 3137
+    },
+    "ops_per_bundle": 3.127
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 18072,
+    "bundles": 10249,
+    "bank_conflicts": 0,
+    "branch_penalties": 34,
+    "icache_misses": 92,
+    "dcache_misses": 265,
+    "code_bytes": {
+     "16-bit hint (SB1)": 5790,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6940,
+     "32-bit header + 2nd word above 4 ops": 6868
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2700,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3198,
+     "32-bit header + 2nd word above 4 ops": 2988
+    },
+    "ops_per_bundle": 4.081
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "rfft2048_f32": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 139704,
+   "bundles": 123391,
+   "bank_conflicts": 0,
+   "branch_penalties": 101,
+   "icache_misses": 38,
+   "dcache_misses": 639,
+   "instructions": 123391,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 118810,
+  "blocks": 37,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 133654,
+    "bundles": 118810,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 47,
+    "dcache_misses": 635
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 71685,
+    "bundles": 51613,
+    "bank_conflicts": 0,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 635,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3154,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3566,
+     "32-bit header + 2nd word above 4 ops": 3566
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5392,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7861,
+     "32-bit header + 2nd word above 4 ops": 7861
+    },
+    "ops_per_bundle": 2.302
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 68913,
+    "bundles": 51613,
+    "bank_conflicts": 0,
+    "branch_penalties": 99,
+    "icache_misses": 47,
+    "dcache_misses": 635,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3154,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3566,
+     "32-bit header + 2nd word above 4 ops": 3566
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5392,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7861,
+     "32-bit header + 2nd word above 4 ops": 7861
+    },
+    "ops_per_bundle": 2.302
+   },
+   "+ static BTFN prediction": {
+    "cycles": 69069,
+    "bundles": 51613,
+    "bank_conflicts": 0,
+    "branch_penalties": 177,
+    "icache_misses": 47,
+    "dcache_misses": 635,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3154,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3566,
+     "32-bit header + 2nd word above 4 ops": 3566
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5392,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7861,
+     "32-bit header + 2nd word above 4 ops": 7861
+    },
+    "ops_per_bundle": 2.302
+   },
+   "+ zero-overhead loops": {
+    "cycles": 67145,
+    "bundles": 49997,
+    "bank_conflicts": 0,
+    "branch_penalties": 23,
+    "icache_misses": 47,
+    "dcache_misses": 635,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3118,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3530,
+     "32-bit header + 2nd word above 4 ops": 3530
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6067,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6697,
+     "32-bit header + 2nd word above 4 ops": 6697
+    },
+    "ops_per_bundle": 2.344
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 66933,
+    "bundles": 43004,
+    "bank_conflicts": 5098,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3170,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3598,
+     "32-bit header + 2nd word above 4 ops": 3598
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6636,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7251,
+     "32-bit header + 2nd word above 4 ops": 7251
+    },
+    "ops_per_bundle": 2.763
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 61835,
+    "bundles": 43004,
+    "bank_conflicts": 0,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3170,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3598,
+     "32-bit header + 2nd word above 4 ops": 3598
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6636,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7251,
+     "32-bit header + 2nd word above 4 ops": 7251
+    },
+    "ops_per_bundle": 2.763
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 64017,
+    "bundles": 38815,
+    "bank_conflicts": 6132,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3198,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3654,
+     "32-bit header + 2nd word above 4 ops": 3654
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6416,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7894,
+     "32-bit header + 2nd word above 4 ops": 7894
+    },
+    "ops_per_bundle": 3.061
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 57885,
+    "bundles": 38815,
+    "bank_conflicts": 0,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3198,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3654,
+     "32-bit header + 2nd word above 4 ops": 3654
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6416,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7894,
+     "32-bit header + 2nd word above 4 ops": 7894
+    },
+    "ops_per_bundle": 3.061
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 70501,
+    "bundles": 50192,
+    "bank_conflicts": 0,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 635,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3120,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3618,
+     "32-bit header + 2nd word above 4 ops": 3618
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5174,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6614,
+     "32-bit header + 2nd word above 4 ops": 6614
+    },
+    "ops_per_bundle": 2.367
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 64520,
+    "bundles": 40012,
+    "bank_conflicts": 4726,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3128,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3710,
+     "32-bit header + 2nd word above 4 ops": 3710
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5862,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8101,
+     "32-bit header + 2nd word above 4 ops": 8101
+    },
+    "ops_per_bundle": 2.969
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 61327,
+    "bundles": 35224,
+    "bank_conflicts": 5606,
+    "branch_penalties": 1485,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3148,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3754,
+     "32-bit header + 2nd word above 4 ops": 3754
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5743,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8806,
+     "32-bit header + 2nd word above 4 ops": 8806
+    },
+    "ops_per_bundle": 3.373
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 62377,
+    "bundles": 41388,
+    "bank_conflicts": 5098,
+    "branch_penalties": 15,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3134,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3562,
+     "32-bit header + 2nd word above 4 ops": 3562
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6404,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7505,
+     "32-bit header + 2nd word above 4 ops": 7505
+    },
+    "ops_per_bundle": 2.832
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 57599,
+    "bundles": 34436,
+    "bank_conflicts": 5606,
+    "branch_penalties": 15,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3108,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3710,
+     "32-bit header + 2nd word above 4 ops": 3710
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6746,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8266,
+     "32-bit header + 2nd word above 4 ops": 8266
+    },
+    "ops_per_bundle": 3.403
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 49170,
+    "bundles": 29977,
+    "bank_conflicts": 0,
+    "branch_penalties": 15,
+    "icache_misses": 47,
+    "dcache_misses": 636,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3036,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3666,
+     "32-bit header + 2nd word above 4 ops": 3638
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6954,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8463,
+     "32-bit header + 2nd word above 4 ops": 8007
+    },
+    "ops_per_bundle": 3.909
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "rfft512_f32": {
+  "group": "float DSP (team Embench suite)",
+  "scalar_rv32gc": {
+   "cycles": 29335,
+   "bundles": 25691,
+   "bank_conflicts": 0,
+   "branch_penalties": 72,
+   "icache_misses": 46,
+   "dcache_misses": 133,
+   "instructions": 25691,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 24596,
+  "blocks": 34,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 28142,
+    "bundles": 24596,
+    "bank_conflicts": 0,
+    "branch_penalties": 71,
+    "icache_misses": 55,
+    "dcache_misses": 134
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 14943,
+    "bundles": 10837,
+    "bank_conflicts": 0,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3748,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4240,
+     "32-bit header + 2nd word above 4 ops": 4240
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1101,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1279,
+     "32-bit header + 2nd word above 4 ops": 1279
+    },
+    "ops_per_bundle": 2.27
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 14391,
+    "bundles": 10837,
+    "bank_conflicts": 0,
+    "branch_penalties": 71,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3748,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4240,
+     "32-bit header + 2nd word above 4 ops": 4240
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1101,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1279,
+     "32-bit header + 2nd word above 4 ops": 1279
+    },
+    "ops_per_bundle": 2.27
+   },
+   "+ static BTFN prediction": {
+    "cycles": 14393,
+    "bundles": 10837,
+    "bank_conflicts": 0,
+    "branch_penalties": 72,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3748,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4240,
+     "32-bit header + 2nd word above 4 ops": 4240
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1101,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1279,
+     "32-bit header + 2nd word above 4 ops": 1279
+    },
+    "ops_per_bundle": 2.27
+   },
+   "+ zero-overhead loops": {
+    "cycles": 13946,
+    "bundles": 10476,
+    "bank_conflicts": 0,
+    "branch_penalties": 29,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3720,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4212,
+     "32-bit header + 2nd word above 4 ops": 4212
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1097,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1383,
+     "32-bit header + 2nd word above 4 ops": 1383
+    },
+    "ops_per_bundle": 2.313
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 14187,
+    "bundles": 8977,
+    "bank_conflicts": 1102,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3732,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4208,
+     "32-bit header + 2nd word above 4 ops": 4208
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1119,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1502,
+     "32-bit header + 2nd word above 4 ops": 1502
+    },
+    "ops_per_bundle": 2.74
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 13085,
+    "bundles": 8977,
+    "bank_conflicts": 0,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3732,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4208,
+     "32-bit header + 2nd word above 4 ops": 4208
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1119,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1502,
+     "32-bit header + 2nd word above 4 ops": 1502
+    },
+    "ops_per_bundle": 2.74
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 13418,
+    "bundles": 7827,
+    "bank_conflicts": 1483,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3776,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4296,
+     "32-bit header + 2nd word above 4 ops": 4296
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1355,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1382,
+     "32-bit header + 2nd word above 4 ops": 1382
+    },
+    "ops_per_bundle": 3.142
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 11935,
+    "bundles": 7827,
+    "bank_conflicts": 0,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3776,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4296,
+     "32-bit header + 2nd word above 4 ops": 4296
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1355,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1382,
+     "32-bit header + 2nd word above 4 ops": 1382
+    },
+    "ops_per_bundle": 3.142
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 14597,
+    "bundles": 10491,
+    "bank_conflicts": 0,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3700,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4332,
+     "32-bit header + 2nd word above 4 ops": 4332
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1193,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1263,
+     "32-bit header + 2nd word above 4 ops": 1263
+    },
+    "ops_per_bundle": 2.344
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 13604,
+    "bundles": 8274,
+    "bank_conflicts": 1192,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3676,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4336,
+     "32-bit header + 2nd word above 4 ops": 4336
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1152,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1660,
+     "32-bit header + 2nd word above 4 ops": 1660
+    },
+    "ops_per_bundle": 2.973
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 13040,
+    "bundles": 7239,
+    "bank_conflicts": 1607,
+    "branch_penalties": 347,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3718,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4416,
+     "32-bit header + 2nd word above 4 ops": 4416
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1322,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1605,
+     "32-bit header + 2nd word above 4 ops": 1605
+    },
+    "ops_per_bundle": 3.398
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 13170,
+    "bundles": 8616,
+    "bank_conflicts": 1102,
+    "branch_penalties": 19,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3704,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4180,
+     "32-bit header + 2nd word above 4 ops": 4180
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1373,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1417,
+     "32-bit header + 2nd word above 4 ops": 1417
+    },
+    "ops_per_bundle": 2.813
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 12220,
+    "bundles": 7075,
+    "bank_conflicts": 1607,
+    "branch_penalties": 19,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3684,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4376,
+     "32-bit header + 2nd word above 4 ops": 4376
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1274,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1570,
+     "32-bit header + 2nd word above 4 ops": 1570
+    },
+    "ops_per_bundle": 3.425
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 9953,
+    "bundles": 5732,
+    "bank_conflicts": 0,
+    "branch_penalties": 19,
+    "icache_misses": 55,
+    "dcache_misses": 134,
+    "code_bytes": {
+     "16-bit hint (SB1)": 3584,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4356,
+     "32-bit header + 2nd word above 4 ops": 4284
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1605,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1743,
+     "32-bit header + 2nd word above 4 ops": 1523
+    },
+    "ops_per_bundle": 4.228
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "matmult-int": {
+  "group": "integer DSP / ML",
+  "scalar_rv32gc": {
+   "cycles": 140891,
+   "bundles": 123041,
+   "bank_conflicts": 0,
+   "branch_penalties": 899,
+   "icache_misses": 3,
+   "dcache_misses": 0,
+   "instructions": 123041,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 110937,
+  "blocks": 17,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 111391,
+    "bundles": 110937,
+    "bank_conflicts": 0,
+    "branch_penalties": 93,
+    "icache_misses": 15,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 77401,
+    "bundles": 73821,
+    "bank_conflicts": 0,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1056,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1148,
+     "32-bit header + 2nd word above 4 ops": 1148
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 844,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5632,
+     "32-bit header + 2nd word above 4 ops": 5632
+    },
+    "ops_per_bundle": 1.503
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 74275,
+    "bundles": 73821,
+    "bank_conflicts": 0,
+    "branch_penalties": 93,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1056,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1148,
+     "32-bit header + 2nd word above 4 ops": 1148
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 844,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5632,
+     "32-bit header + 2nd word above 4 ops": 5632
+    },
+    "ops_per_bundle": 1.503
+   },
+   "+ static BTFN prediction": {
+    "cycles": 75793,
+    "bundles": 73821,
+    "bank_conflicts": 0,
+    "branch_penalties": 852,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1056,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1148,
+     "32-bit header + 2nd word above 4 ops": 1148
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 844,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5632,
+     "32-bit header + 2nd word above 4 ops": 5632
+    },
+    "ops_per_bundle": 1.503
+   },
+   "+ zero-overhead loops": {
+    "cycles": 73205,
+    "bundles": 72925,
+    "bank_conflicts": 0,
+    "branch_penalties": 6,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1034,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1124,
+     "32-bit header + 2nd word above 4 ops": 1124
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2432,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4832,
+     "32-bit header + 2nd word above 4 ops": 4832
+    },
+    "ops_per_bundle": 1.487
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 62391,
+    "bundles": 44019,
+    "bank_conflicts": 14792,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1140,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1316,
+     "32-bit header + 2nd word above 4 ops": 1316
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6574,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8117,
+     "32-bit header + 2nd word above 4 ops": 8117
+    },
+    "ops_per_bundle": 2.52
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 47599,
+    "bundles": 44019,
+    "bank_conflicts": 0,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1140,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1316,
+     "32-bit header + 2nd word above 4 ops": 1316
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6574,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8117,
+     "32-bit header + 2nd word above 4 ops": 8117
+    },
+    "ops_per_bundle": 2.52
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 60756,
+    "bundles": 42608,
+    "bank_conflicts": 14568,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1202,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1440,
+     "32-bit header + 2nd word above 4 ops": 1440
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6617,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7469,
+     "32-bit header + 2nd word above 4 ops": 7469
+    },
+    "ops_per_bundle": 2.604
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 46188,
+    "bundles": 42608,
+    "bank_conflicts": 0,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1202,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1440,
+     "32-bit header + 2nd word above 4 ops": 1440
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6617,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7469,
+     "32-bit header + 2nd word above 4 ops": 7469
+    },
+    "ops_per_bundle": 2.604
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 76601,
+    "bundles": 73021,
+    "bank_conflicts": 0,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1052,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1148,
+     "32-bit header + 2nd word above 4 ops": 1148
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3242,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5632,
+     "32-bit header + 2nd word above 4 ops": 5632
+    },
+    "ops_per_bundle": 1.519
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 61591,
+    "bundles": 43219,
+    "bank_conflicts": 14792,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1138,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1324,
+     "32-bit header + 2nd word above 4 ops": 1324
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 6575,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7375,
+     "32-bit header + 2nd word above 4 ops": 7375
+    },
+    "ops_per_bundle": 2.567
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 59956,
+    "bundles": 41808,
+    "bank_conflicts": 14568,
+    "branch_penalties": 1656,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1200,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1448,
+     "32-bit header + 2nd word above 4 ops": 1448
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5017,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6631,
+     "32-bit header + 2nd word above 4 ops": 6631
+    },
+    "ops_per_bundle": 2.653
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 58165,
+    "bundles": 43151,
+    "bank_conflicts": 14736,
+    "branch_penalties": 5,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1122,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1300,
+     "32-bit header + 2nd word above 4 ops": 1300
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5785,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5787,
+     "32-bit header + 2nd word above 4 ops": 5787
+    },
+    "ops_per_bundle": 2.513
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 56502,
+    "bundles": 41712,
+    "bank_conflicts": 14512,
+    "branch_penalties": 5,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1180,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1428,
+     "32-bit header + 2nd word above 4 ops": 1428
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5804,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7471,
+     "32-bit header + 2nd word above 4 ops": 7471
+    },
+    "ops_per_bundle": 2.6
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 39582,
+    "bundles": 36105,
+    "bank_conflicts": 0,
+    "branch_penalties": 5,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 1084,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1284,
+     "32-bit header + 2nd word above 4 ops": 1284
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4146,
+     "32-bit header, 4 ops/header (P-bit chaining)": 7432,
+     "32-bit header + 2nd word above 4 ops": 7432
+    },
+    "ops_per_bundle": 3.003
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "edn": {
+  "group": "integer DSP / ML",
+  "scalar_rv32gc": {
+   "cycles": 85708,
+   "bundles": 79316,
+   "bank_conflicts": 0,
+   "branch_penalties": 347,
+   "icache_misses": 9,
+   "dcache_misses": 0,
+   "instructions": 79316,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 60523,
+  "blocks": 40,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 61533,
+    "bundles": 60523,
+    "bank_conflicts": 0,
+    "branch_penalties": 121,
+    "icache_misses": 41,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 32303,
+    "bundles": 28500,
+    "bank_conflicts": 0,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4766,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5346,
+     "32-bit header + 2nd word above 4 ops": 5346
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2150,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3486,
+     "32-bit header + 2nd word above 4 ops": 3486
+    },
+    "ops_per_bundle": 2.124
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 30609,
+    "bundles": 28500,
+    "bank_conflicts": 0,
+    "branch_penalties": 121,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4766,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5346,
+     "32-bit header + 2nd word above 4 ops": 5346
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2150,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3486,
+     "32-bit header + 2nd word above 4 ops": 3486
+    },
+    "ops_per_bundle": 2.124
+   },
+   "+ static BTFN prediction": {
+    "cycles": 30843,
+    "bundles": 28500,
+    "bank_conflicts": 0,
+    "branch_penalties": 238,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4766,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5346,
+     "32-bit header + 2nd word above 4 ops": 5346
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2150,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3486,
+     "32-bit header + 2nd word above 4 ops": 3486
+    },
+    "ops_per_bundle": 2.124
+   },
+   "+ zero-overhead loops": {
+    "cycles": 30055,
+    "bundles": 28156,
+    "bank_conflicts": 0,
+    "branch_penalties": 16,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4706,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5282,
+     "32-bit header + 2nd word above 4 ops": 5282
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3186,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3489,
+     "32-bit header + 2nd word above 4 ops": 3489
+    },
+    "ops_per_bundle": 2.108
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 28046,
+    "bundles": 19963,
+    "bank_conflicts": 5048,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4836,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5486,
+     "32-bit header + 2nd word above 4 ops": 5486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2716,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3702,
+     "32-bit header + 2nd word above 4 ops": 3702
+    },
+    "ops_per_bundle": 3.032
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 22998,
+    "bundles": 19963,
+    "bank_conflicts": 0,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4836,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5486,
+     "32-bit header + 2nd word above 4 ops": 5486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2716,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3702,
+     "32-bit header + 2nd word above 4 ops": 3702
+    },
+    "ops_per_bundle": 3.032
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 26961,
+    "bundles": 18941,
+    "bank_conflicts": 4985,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4964,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5742,
+     "32-bit header + 2nd word above 4 ops": 5742
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3933,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3469,
+     "32-bit header + 2nd word above 4 ops": 3469
+    },
+    "ops_per_bundle": 3.195
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 21976,
+    "bundles": 18941,
+    "bank_conflicts": 0,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4964,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5742,
+     "32-bit header + 2nd word above 4 ops": 5742
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3933,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3469,
+     "32-bit header + 2nd word above 4 ops": 3469
+    },
+    "ops_per_bundle": 3.195
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 32171,
+    "bundles": 28368,
+    "bank_conflicts": 0,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4740,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5418,
+     "32-bit header + 2nd word above 4 ops": 5418
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3611,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3673,
+     "32-bit header + 2nd word above 4 ops": 3673
+    },
+    "ops_per_bundle": 2.133
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 26858,
+    "bundles": 18599,
+    "bank_conflicts": 5094,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4794,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5638,
+     "32-bit header + 2nd word above 4 ops": 5638
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3523,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4246,
+     "32-bit header + 2nd word above 4 ops": 4246
+    },
+    "ops_per_bundle": 3.254
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 25805,
+    "bundles": 17645,
+    "bank_conflicts": 4995,
+    "branch_penalties": 968,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4920,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5894,
+     "32-bit header + 2nd word above 4 ops": 5894
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3280,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4758,
+     "32-bit header + 2nd word above 4 ops": 4758
+    },
+    "ops_per_bundle": 3.43
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 25984,
+    "bundles": 19619,
+    "bank_conflicts": 5248,
+    "branch_penalties": 9,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4782,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5434,
+     "32-bit header + 2nd word above 4 ops": 5434
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3805,
+     "32-bit header, 4 ops/header (P-bit chaining)": 3623,
+     "32-bit header + 2nd word above 4 ops": 3623
+    },
+    "ops_per_bundle": 3.025
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 24231,
+    "bundles": 17565,
+    "bank_conflicts": 5419,
+    "branch_penalties": 9,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4856,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5822,
+     "32-bit header + 2nd word above 4 ops": 5822
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 3364,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4274,
+     "32-bit header + 2nd word above 4 ops": 4274
+    },
+    "ops_per_bundle": 3.379
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 15473,
+    "bundles": 14078,
+    "bank_conflicts": 0,
+    "branch_penalties": 9,
+    "icache_misses": 41,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 4660,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5594,
+     "32-bit header + 2nd word above 4 ops": 5554
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4702,
+     "32-bit header + 2nd word above 4 ops": 4296
+    },
+    "ops_per_bundle": 4.216
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "dwconv3x3_i8": {
+  "group": "integer DSP / ML",
+  "scalar_rv32gc": {
+   "cycles": 243102,
+   "bundles": 232188,
+   "bank_conflicts": 0,
+   "branch_penalties": 303,
+   "icache_misses": 6,
+   "dcache_misses": 325,
+   "instructions": 232188,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 232172,
+  "blocks": 9,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 243070,
+    "bundles": 232172,
+    "bank_conflicts": 0,
+    "branch_penalties": 303,
+    "icache_misses": 6,
+    "dcache_misses": 325
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 132955,
+    "bundles": 110116,
+    "bank_conflicts": 0,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 516,
+     "32-bit header, 4 ops/header (P-bit chaining)": 582,
+     "32-bit header + 2nd word above 4 ops": 582
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16912,
+     "32-bit header + 2nd word above 4 ops": 16912
+    },
+    "ops_per_bundle": 2.108
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 125365,
+    "bundles": 110116,
+    "bank_conflicts": 0,
+    "branch_penalties": 303,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 516,
+     "32-bit header, 4 ops/header (P-bit chaining)": 582,
+     "32-bit header + 2nd word above 4 ops": 582
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16912,
+     "32-bit header + 2nd word above 4 ops": 16912
+    },
+    "ops_per_bundle": 2.108
+   },
+   "+ static BTFN prediction": {
+    "cycles": 125311,
+    "bundles": 110116,
+    "bank_conflicts": 0,
+    "branch_penalties": 276,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 516,
+     "32-bit header, 4 ops/header (P-bit chaining)": 582,
+     "32-bit header + 2nd word above 4 ops": 582
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16912,
+     "32-bit header + 2nd word above 4 ops": 16912
+    },
+    "ops_per_bundle": 2.108
+   },
+   "+ zero-overhead loops": {
+    "cycles": 120397,
+    "bundles": 105748,
+    "bank_conflicts": 0,
+    "branch_penalties": 3,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 504,
+     "32-bit header, 4 ops/header (P-bit chaining)": 570,
+     "32-bit header + 2nd word above 4 ops": 570
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12560,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16656,
+     "32-bit header + 2nd word above 4 ops": 16656
+    },
+    "ops_per_bundle": 2.154
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 128614,
+    "bundles": 72462,
+    "bank_conflicts": 33552,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 522,
+     "32-bit header, 4 ops/header (P-bit chaining)": 594,
+     "32-bit header + 2nd word above 4 ops": 594
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16658,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8465,
+     "32-bit header + 2nd word above 4 ops": 8465
+    },
+    "ops_per_bundle": 3.204
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 95062,
+    "bundles": 72462,
+    "bank_conflicts": 0,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 522,
+     "32-bit header, 4 ops/header (P-bit chaining)": 594,
+     "32-bit header + 2nd word above 4 ops": 594
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16658,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8465,
+     "32-bit header + 2nd word above 4 ops": 8465
+    },
+    "ops_per_bundle": 3.204
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 123966,
+    "bundles": 67797,
+    "bank_conflicts": 33569,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 548,
+     "32-bit header, 4 ops/header (P-bit chaining)": 646,
+     "32-bit header + 2nd word above 4 ops": 646
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12593,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16641,
+     "32-bit header + 2nd word above 4 ops": 16641
+    },
+    "ops_per_bundle": 3.425
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 90397,
+    "bundles": 67797,
+    "bank_conflicts": 0,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 548,
+     "32-bit header, 4 ops/header (P-bit chaining)": 646,
+     "32-bit header + 2nd word above 4 ops": 646
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12593,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16641,
+     "32-bit header + 2nd word above 4 ops": 16641
+    },
+    "ops_per_bundle": 3.425
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 132938,
+    "bundles": 110099,
+    "bank_conflicts": 0,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 510,
+     "32-bit header, 4 ops/header (P-bit chaining)": 590,
+     "32-bit header + 2nd word above 4 ops": 590
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16400,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16913,
+     "32-bit header + 2nd word above 4 ops": 16913
+    },
+    "ops_per_bundle": 2.109
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 128597,
+    "bundles": 72445,
+    "bank_conflicts": 33552,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 516,
+     "32-bit header, 4 ops/header (P-bit chaining)": 606,
+     "32-bit header + 2nd word above 4 ops": 606
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16658,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16656,
+     "32-bit header + 2nd word above 4 ops": 16656
+    },
+    "ops_per_bundle": 3.205
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 123981,
+    "bundles": 67764,
+    "bank_conflicts": 33617,
+    "branch_penalties": 4098,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 544,
+     "32-bit header, 4 ops/header (P-bit chaining)": 666,
+     "32-bit header + 2nd word above 4 ops": 666
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12593,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16642,
+     "32-bit header + 2nd word above 4 ops": 16642
+    },
+    "ops_per_bundle": 3.426
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 116054,
+    "bundles": 68094,
+    "bank_conflicts": 33552,
+    "branch_penalties": 2,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 510,
+     "32-bit header, 4 ops/header (P-bit chaining)": 582,
+     "32-bit header + 2nd word above 4 ops": 582
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 16401,
+     "32-bit header, 4 ops/header (P-bit chaining)": 8465,
+     "32-bit header + 2nd word above 4 ops": 8465
+    },
+    "ops_per_bundle": 3.345
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 115773,
+    "bundles": 67748,
+    "bank_conflicts": 33617,
+    "branch_penalties": 2,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 528,
+     "32-bit header, 4 ops/header (P-bit chaining)": 646,
+     "32-bit header + 2nd word above 4 ops": 646
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12578,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12289,
+     "32-bit header + 2nd word above 4 ops": 12289
+    },
+    "ops_per_bundle": 3.363
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 77779,
+    "bundles": 67196,
+    "bank_conflicts": 0,
+    "branch_penalties": 2,
+    "icache_misses": 6,
+    "dcache_misses": 325,
+    "code_bytes": {
+     "16-bit hint (SB1)": 498,
+     "32-bit header, 4 ops/header (P-bit chaining)": 602,
+     "32-bit header + 2nd word above 4 ops": 594
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 12561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 16402,
+     "32-bit header + 2nd word above 4 ops": 12561
+    },
+    "ops_per_bundle": 3.39
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "fir_q15": {
+  "group": "integer DSP / ML",
+  "scalar_rv32gc": {
+   "cycles": 138985,
+   "bundles": 120587,
+   "bank_conflicts": 0,
+   "branch_penalties": 846,
+   "icache_misses": 2,
+   "dcache_misses": 16,
+   "instructions": 120587,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 82724,
+  "blocks": 12,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 83802,
+    "bundles": 82724,
+    "bank_conflicts": 0,
+    "branch_penalties": 351,
+    "icache_misses": 4,
+    "dcache_misses": 17
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 53409,
+    "bundles": 43291,
+    "bank_conflicts": 0,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 332,
+     "32-bit header, 4 ops/header (P-bit chaining)": 368,
+     "32-bit header + 2nd word above 4 ops": 368
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4608,
+     "32-bit header + 2nd word above 4 ops": 4608
+    },
+    "ops_per_bundle": 1.911
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 48465,
+    "bundles": 43291,
+    "bank_conflicts": 0,
+    "branch_penalties": 351,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 332,
+     "32-bit header, 4 ops/header (P-bit chaining)": 368,
+     "32-bit header + 2nd word above 4 ops": 368
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4608,
+     "32-bit header + 2nd word above 4 ops": 4608
+    },
+    "ops_per_bundle": 1.911
+   },
+   "+ static BTFN prediction": {
+    "cycles": 50341,
+    "bundles": 43291,
+    "bank_conflicts": 0,
+    "branch_penalties": 1289,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 332,
+     "32-bit header, 4 ops/header (P-bit chaining)": 368,
+     "32-bit header + 2nd word above 4 ops": 368
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4608,
+     "32-bit header + 2nd word above 4 ops": 4608
+    },
+    "ops_per_bundle": 1.911
+   },
+   "+ zero-overhead loops": {
+    "cycles": 48803,
+    "bundles": 42779,
+    "bank_conflicts": 0,
+    "branch_penalties": 776,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 322,
+     "32-bit header, 4 ops/header (P-bit chaining)": 356,
+     "32-bit header + 2nd word above 4 ops": 356
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4609,
+     "32-bit header + 2nd word above 4 ops": 4609
+    },
+    "ops_per_bundle": 1.874
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 45211,
+    "bundles": 30997,
+    "bank_conflicts": 8192,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 344,
+     "32-bit header, 4 ops/header (P-bit chaining)": 392,
+     "32-bit header + 2nd word above 4 ops": 392
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4610,
+     "32-bit header + 2nd word above 4 ops": 4610
+    },
+    "ops_per_bundle": 2.669
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 37019,
+    "bundles": 30997,
+    "bank_conflicts": 0,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 344,
+     "32-bit header, 4 ops/header (P-bit chaining)": 392,
+     "32-bit header + 2nd word above 4 ops": 392
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4610,
+     "32-bit header + 2nd word above 4 ops": 4610
+    },
+    "ops_per_bundle": 2.669
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 45204,
+    "bundles": 30990,
+    "bank_conflicts": 8192,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 358,
+     "32-bit header, 4 ops/header (P-bit chaining)": 420,
+     "32-bit header + 2nd word above 4 ops": 420
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4610,
+     "32-bit header + 2nd word above 4 ops": 4610
+    },
+    "ops_per_bundle": 2.669
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 37012,
+    "bundles": 30990,
+    "bank_conflicts": 0,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 358,
+     "32-bit header, 4 ops/header (P-bit chaining)": 420,
+     "32-bit header + 2nd word above 4 ops": 420
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4610,
+     "32-bit header + 2nd word above 4 ops": 4610
+    },
+    "ops_per_bundle": 2.669
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 53408,
+    "bundles": 42779,
+    "bank_conflicts": 0,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 330,
+     "32-bit header, 4 ops/header (P-bit chaining)": 368,
+     "32-bit header + 2nd word above 4 ops": 368
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4608,
+     "32-bit header + 2nd word above 4 ops": 4608
+    },
+    "ops_per_bundle": 1.934
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 45210,
+    "bundles": 30485,
+    "bank_conflicts": 8192,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 342,
+     "32-bit header, 4 ops/header (P-bit chaining)": 396,
+     "32-bit header + 2nd word above 4 ops": 396
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4610,
+     "32-bit header + 2nd word above 4 ops": 4610
+    },
+    "ops_per_bundle": 2.714
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 45203,
+    "bundles": 30478,
+    "bank_conflicts": 8192,
+    "branch_penalties": 2823,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 356,
+     "32-bit header, 4 ops/header (P-bit chaining)": 424,
+     "32-bit header + 2nd word above 4 ops": 424
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6657,
+     "32-bit header + 2nd word above 4 ops": 6657
+    },
+    "ops_per_bundle": 2.714
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 40005,
+    "bundles": 30485,
+    "bank_conflicts": 8192,
+    "branch_penalties": 476,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 334,
+     "32-bit header, 4 ops/header (P-bit chaining)": 380,
+     "32-bit header + 2nd word above 4 ops": 380
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2561,
+     "32-bit header, 4 ops/header (P-bit chaining)": 4609,
+     "32-bit header + 2nd word above 4 ops": 4609
+    },
+    "ops_per_bundle": 2.63
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 39997,
+    "bundles": 29966,
+    "bank_conflicts": 8192,
+    "branch_penalties": 476,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 346,
+     "32-bit header, 4 ops/header (P-bit chaining)": 412,
+     "32-bit header + 2nd word above 4 ops": 412
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4609,
+     "32-bit header, 4 ops/header (P-bit chaining)": 6658,
+     "32-bit header + 2nd word above 4 ops": 6658
+    },
+    "ops_per_bundle": 2.675
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 23606,
+    "bundles": 21767,
+    "bank_conflicts": 0,
+    "branch_penalties": 476,
+    "icache_misses": 4,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 330,
+     "32-bit header, 4 ops/header (P-bit chaining)": 392,
+     "32-bit header + 2nd word above 4 ops": 392
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 5121,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5122,
+     "32-bit header + 2nd word above 4 ops": 5122
+    },
+    "ops_per_bundle": 3.683
+   }
+  },
+  "predication": {
+   "static_hammocks": 2,
+   "dynamic": 1024,
+   "dynamic_taken": 773
+  }
+ },
+ "crc32": {
+  "group": "ALU / control",
+  "scalar_rv32gc": {
+   "cycles": 98745,
+   "bundles": 98363,
+   "bank_conflicts": 0,
+   "branch_penalties": 30,
+   "icache_misses": 1,
+   "dcache_misses": 17,
+   "instructions": 98363,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 91197,
+  "blocks": 19,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 91629,
+    "bundles": 91197,
+    "bank_conflicts": 0,
+    "branch_penalties": 37,
+    "icache_misses": 3,
+    "dcache_misses": 17
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 92073,
+    "bundles": 61998,
+    "bank_conflicts": 0,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 432,
+     "32-bit header, 4 ops/header (P-bit chaining)": 486,
+     "32-bit header + 2nd word above 4 ops": 486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 74717,
+    "bundles": 61998,
+    "bank_conflicts": 0,
+    "branch_penalties": 37,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 432,
+     "32-bit header, 4 ops/header (P-bit chaining)": 486,
+     "32-bit header + 2nd word above 4 ops": 486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "+ static BTFN prediction": {
+    "cycles": 91061,
+    "bundles": 61998,
+    "bank_conflicts": 0,
+    "branch_penalties": 8209,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 432,
+     "32-bit header, 4 ops/header (P-bit chaining)": 486,
+     "32-bit header + 2nd word above 4 ops": 486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "+ zero-overhead loops": {
+    "cycles": 91047,
+    "bundles": 61994,
+    "bank_conflicts": 0,
+    "branch_penalties": 8204,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 422,
+     "32-bit header, 4 ops/header (P-bit chaining)": 474,
+     "32-bit header + 2nd word above 4 ops": 474
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 512,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5632,
+     "32-bit header + 2nd word above 4 ops": 5632
+    },
+    "ops_per_bundle": 1.463
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 92072,
+    "bundles": 61995,
+    "bank_conflicts": 2,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 430,
+     "32-bit header, 4 ops/header (P-bit chaining)": 482,
+     "32-bit header + 2nd word above 4 ops": 482
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 512,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 92070,
+    "bundles": 61995,
+    "bank_conflicts": 0,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 430,
+     "32-bit header, 4 ops/header (P-bit chaining)": 482,
+     "32-bit header + 2nd word above 4 ops": 482
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 512,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 87970,
+    "bundles": 57891,
+    "bank_conflicts": 4,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 436,
+     "32-bit header, 4 ops/header (P-bit chaining)": 494,
+     "32-bit header + 2nd word above 4 ops": 494
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.575
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 87966,
+    "bundles": 57891,
+    "bank_conflicts": 0,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 436,
+     "32-bit header, 4 ops/header (P-bit chaining)": 494,
+     "32-bit header + 2nd word above 4 ops": 494
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.575
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 92073,
+    "bundles": 61998,
+    "bank_conflicts": 0,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 432,
+     "32-bit header, 4 ops/header (P-bit chaining)": 486,
+     "32-bit header + 2nd word above 4 ops": 486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 92072,
+    "bundles": 61995,
+    "bank_conflicts": 2,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 430,
+     "32-bit header, 4 ops/header (P-bit chaining)": 482,
+     "32-bit header + 2nd word above 4 ops": 482
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 512,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.471
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 87970,
+    "bundles": 57891,
+    "bank_conflicts": 4,
+    "branch_penalties": 8715,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 436,
+     "32-bit header, 4 ops/header (P-bit chaining)": 494,
+     "32-bit header + 2nd word above 4 ops": 494
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 4608,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1537,
+     "32-bit header + 2nd word above 4 ops": 1537
+    },
+    "ops_per_bundle": 1.575
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 74662,
+    "bundles": 61991,
+    "bank_conflicts": 2,
+    "branch_penalties": 12,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 420,
+     "32-bit header, 4 ops/header (P-bit chaining)": 470,
+     "32-bit header + 2nd word above 4 ops": 470
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 513,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5633,
+     "32-bit header + 2nd word above 4 ops": 5633
+    },
+    "ops_per_bundle": 1.463
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 70560,
+    "bundles": 57887,
+    "bank_conflicts": 4,
+    "branch_penalties": 12,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 426,
+     "32-bit header, 4 ops/header (P-bit chaining)": 482,
+     "32-bit header + 2nd word above 4 ops": 482
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 513,
+     "32-bit header, 4 ops/header (P-bit chaining)": 5633,
+     "32-bit header + 2nd word above 4 ops": 5633
+    },
+    "ops_per_bundle": 1.567
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 70555,
+    "bundles": 57886,
+    "bank_conflicts": 0,
+    "branch_penalties": 12,
+    "icache_misses": 3,
+    "dcache_misses": 17,
+    "code_bytes": {
+     "16-bit hint (SB1)": 424,
+     "32-bit header, 4 ops/header (P-bit chaining)": 486,
+     "32-bit header + 2nd word above 4 ops": 486
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 513,
+     "32-bit header, 4 ops/header (P-bit chaining)": 1536,
+     "32-bit header + 2nd word above 4 ops": 1536
+    },
+    "ops_per_bundle": 1.567
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ },
+ "nettle-sha256": {
+  "group": "ALU / control",
+  "scalar_rv32gc": {
+   "cycles": 56053,
+   "bundles": 53799,
+   "bank_conflicts": 0,
+   "branch_penalties": 60,
+   "icache_misses": 12,
+   "dcache_misses": 0,
+   "instructions": 53799,
+   "static_fallback_bundles": 0
+  },
+  "instructions": 51829,
+  "blocks": 48,
+  "configs": {
+   "RV32GC baseline: 1-wide, gshare": {
+    "cycles": 53033,
+    "bundles": 51829,
+    "bank_conflicts": 0,
+    "branch_penalties": 28,
+    "icache_misses": 15,
+    "dcache_misses": 0
+   },
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": {
+    "cycles": 31046,
+    "bundles": 27826,
+    "bank_conflicts": 0,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10244,
+     "32-bit header, 4 ops/header (P-bit chaining)": 11984,
+     "32-bit header + 2nd word above 4 ops": 11984
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2001,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2540,
+     "32-bit header + 2nd word above 4 ops": 2540
+    },
+    "ops_per_bundle": 1.863
+   },
+   "+ gshare predictor (as RV32GC)": {
+    "cycles": 30866,
+    "bundles": 27826,
+    "bank_conflicts": 0,
+    "branch_penalties": 28,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10244,
+     "32-bit header, 4 ops/header (P-bit chaining)": 11984,
+     "32-bit header + 2nd word above 4 ops": 11984
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2001,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2540,
+     "32-bit header + 2nd word above 4 ops": 2540
+    },
+    "ops_per_bundle": 1.863
+   },
+   "+ static BTFN prediction": {
+    "cycles": 31054,
+    "bundles": 27826,
+    "bank_conflicts": 0,
+    "branch_penalties": 122,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10244,
+     "32-bit header, 4 ops/header (P-bit chaining)": 11984,
+     "32-bit header + 2nd word above 4 ops": 11984
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2001,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2540,
+     "32-bit header + 2nd word above 4 ops": 2540
+    },
+    "ops_per_bundle": 1.863
+   },
+   "+ zero-overhead loops": {
+    "cycles": 30998,
+    "bundles": 27802,
+    "bank_conflicts": 0,
+    "branch_penalties": 106,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10226,
+     "32-bit header, 4 ops/header (P-bit chaining)": 11964,
+     "32-bit header + 2nd word above 4 ops": 11964
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 1964,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2261,
+     "32-bit header + 2nd word above 4 ops": 2261
+    },
+    "ops_per_bundle": 1.863
+   },
+   "+ 1 LS + 1 load-only, 2 interleaved banks": {
+    "cycles": 28294,
+    "bundles": 22251,
+    "bank_conflicts": 2823,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10490,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12476,
+     "32-bit header + 2nd word above 4 ops": 12476
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2167,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2662,
+     "32-bit header + 2nd word above 4 ops": 2662
+    },
+    "ops_per_bundle": 2.329
+   },
+   "+ 1 LS + 1 load-only, conflict-free": {
+    "cycles": 25471,
+    "bundles": 22251,
+    "bank_conflicts": 0,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10490,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12476,
+     "32-bit header + 2nd word above 4 ops": 12476
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2167,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2662,
+     "32-bit header + 2nd word above 4 ops": 2662
+    },
+    "ops_per_bundle": 2.329
+   },
+   "+ 2 LS, 2 interleaved banks": {
+    "cycles": 27720,
+    "bundles": 21819,
+    "bank_conflicts": 2657,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10544,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12584,
+     "32-bit header + 2nd word above 4 ops": 12584
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2351,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2706,
+     "32-bit header + 2nd word above 4 ops": 2706
+    },
+    "ops_per_bundle": 2.375
+   },
+   "+ 2 LS, conflict-free": {
+    "cycles": 25063,
+    "bundles": 21819,
+    "bank_conflicts": 0,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10544,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12584,
+     "32-bit header + 2nd word above 4 ops": 12584
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2351,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2706,
+     "32-bit header + 2nd word above 4 ops": 2706
+    },
+    "ops_per_bundle": 2.375
+   },
+   "8-wide, 1 mem op": {
+    "cycles": 31002,
+    "bundles": 27782,
+    "bank_conflicts": 0,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10222,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12100,
+     "32-bit header + 2nd word above 4 ops": 12100
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2012,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2176,
+     "32-bit header + 2nd word above 4 ops": 2176
+    },
+    "ops_per_bundle": 1.866
+   },
+   "8-wide, 1 LS + 1 load-only, 2 banks": {
+    "cycles": 28202,
+    "bundles": 22143,
+    "bank_conflicts": 2839,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10458,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12668,
+     "32-bit header + 2nd word above 4 ops": 12668
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2274,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2662,
+     "32-bit header + 2nd word above 4 ops": 2662
+    },
+    "ops_per_bundle": 2.341
+   },
+   "8-wide, 2 LS, 2 banks": {
+    "cycles": 27648,
+    "bundles": 21667,
+    "bank_conflicts": 2665,
+    "branch_penalties": 118,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10484,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12756,
+     "32-bit header + 2nd word above 4 ops": 12756
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2329,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2714,
+     "32-bit header + 2nd word above 4 ops": 2714
+    },
+    "ops_per_bundle": 2.392
+   },
+   "4-wide, 1 LS + 1 load-only, 2 banks, gshare, ZOL": {
+    "cycles": 28086,
+    "bundles": 22227,
+    "bank_conflicts": 2823,
+    "branch_penalties": 26,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10472,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12456,
+     "32-bit header + 2nd word above 4 ops": 12456
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2196,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2855,
+     "32-bit header + 2nd word above 4 ops": 2855
+    },
+    "ops_per_bundle": 2.331
+   },
+   "8-wide, 2 LS, 2 banks, gshare, ZOL": {
+    "cycles": 27448,
+    "bundles": 21651,
+    "bank_conflicts": 2665,
+    "branch_penalties": 26,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10462,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12728,
+     "32-bit header + 2nd word above 4 ops": 12728
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2271,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2831,
+     "32-bit header + 2nd word above 4 ops": 2831
+    },
+    "ops_per_bundle": 2.393
+   },
+   "ceiling: 16-wide, 4 mem ops any lane, conflict-free, gshare, ZOL": {
+    "cycles": 24018,
+    "bundles": 20694,
+    "bank_conflicts": 0,
+    "branch_penalties": 26,
+    "icache_misses": 15,
+    "dcache_misses": 0,
+    "code_bytes": {
+     "16-bit hint (SB1)": 10276,
+     "32-bit header, 4 ops/header (P-bit chaining)": 12560,
+     "32-bit header + 2nd word above 4 ops": 12512
+    },
+    "line_crossings": {
+     "16-bit hint (SB1)": 2146,
+     "32-bit header, 4 ops/header (P-bit chaining)": 2686,
+     "32-bit header + 2nd word above 4 ops": 2730
+    },
+    "ops_per_bundle": 2.503
+   }
+  },
+  "predication": {
+   "static_hammocks": 0,
+   "dynamic": 0,
+   "dynamic_taken": 0
+  }
+ }
+}

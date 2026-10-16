@@ -1,0 +1,382 @@
+[
+ {
+  "benchmark": "biquad_cascade_df2T_f32_sos3_n1",
+  "scalar": {
+   "cycles": 126,
+   "bundles": 99,
+   "bank_conflicts": 0,
+   "branch_penalties": 4,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 99,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 174,
+   "bundles": 138,
+   "bank_conflicts": 0,
+   "branch_penalties": 10,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 138,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 130,
+   "bundles": 81,
+   "bank_conflicts": 0,
+   "branch_penalties": 12,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 138,
+   "static_fallback_bundles": 0
+  },
+  "rtl": {
+   "scalar_cycles": 126,
+   "vliw_cycles_rv32gc": 186,
+   "starbug_cycles": 136
+  }
+ },
+ {
+  "benchmark": "biquad_cascade_df2T_f32_sos3_n128",
+  "scalar": {
+   "cycles": 5409,
+   "bundles": 4671,
+   "bank_conflicts": 0,
+   "branch_penalties": 25,
+   "icache_misses": 1,
+   "dcache_misses": 16,
+   "instructions": 4671,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 4566,
+   "bundles": 4212,
+   "bank_conflicts": 0,
+   "branch_penalties": 25,
+   "icache_misses": 1,
+   "dcache_misses": 16,
+   "instructions": 4212,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 3341,
+   "bundles": 2169,
+   "bank_conflicts": 0,
+   "branch_penalties": 102,
+   "icache_misses": 1,
+   "dcache_misses": 16,
+   "instructions": 4212,
+   "static_fallback_bundles": 3
+  },
+  "rtl": {
+   "scalar_cycles": 4635,
+   "vliw_cycles_rv32gc": 4685,
+   "starbug_cycles": 3079
+  }
+ },
+ {
+  "benchmark": "dct4_2048_f32",
+  "scalar": {
+   "cycles": 301610,
+   "bundles": 247359,
+   "bank_conflicts": 0,
+   "branch_penalties": 194,
+   "icache_misses": 44,
+   "dcache_misses": 1997,
+   "instructions": 247359,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 275940,
+   "bundles": 216664,
+   "bank_conflicts": 0,
+   "branch_penalties": 199,
+   "icache_misses": 92,
+   "dcache_misses": 2015,
+   "instructions": 216664,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 212814,
+   "bundles": 126214,
+   "bank_conflicts": 0,
+   "branch_penalties": 3539,
+   "icache_misses": 92,
+   "dcache_misses": 2015,
+   "instructions": 216664,
+   "static_fallback_bundles": 46
+  },
+  "rtl": {
+   "scalar_cycles": 304097,
+   "vliw_cycles_rv32gc": 287066,
+   "starbug_cycles": 228987
+  }
+ },
+ {
+  "benchmark": "dct4_512_f32",
+  "scalar": {
+   "cycles": 63579,
+   "bundles": 56731,
+   "bank_conflicts": 0,
+   "branch_penalties": 171,
+   "icache_misses": 53,
+   "dcache_misses": 262,
+   "instructions": 56731,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 57991,
+   "bundles": 49038,
+   "bank_conflicts": 0,
+   "branch_penalties": 174,
+   "icache_misses": 102,
+   "dcache_misses": 265,
+   "instructions": 49038,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 49015,
+   "bundles": 34207,
+   "bank_conflicts": 0,
+   "branch_penalties": 866,
+   "icache_misses": 102,
+   "dcache_misses": 265,
+   "instructions": 49038,
+   "static_fallback_bundles": 32
+  },
+  "rtl": {
+   "scalar_cycles": 64849,
+   "vliw_cycles_rv32gc": 58643,
+   "starbug_cycles": 50903
+  }
+ },
+ {
+  "benchmark": "fir_f32_taps256_n1",
+  "scalar": {
+   "cycles": 3407,
+   "bundles": 3357,
+   "bank_conflicts": 0,
+   "branch_penalties": 26,
+   "icache_misses": 0,
+   "dcache_misses": 0,
+   "instructions": 3357,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 2247,
+   "bundles": 1976,
+   "bank_conflicts": 0,
+   "branch_penalties": 28,
+   "icache_misses": 0,
+   "dcache_misses": 0,
+   "instructions": 1976,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 1840,
+   "bundles": 1292,
+   "bank_conflicts": 0,
+   "branch_penalties": 67,
+   "icache_misses": 0,
+   "dcache_misses": 0,
+   "instructions": 1976,
+   "static_fallback_bundles": 3
+  },
+  "rtl": {
+   "scalar_cycles": 3660,
+   "vliw_cycles_rv32gc": 2458,
+   "starbug_cycles": 2123
+  }
+ },
+ {
+  "benchmark": "fir_f32_taps256_n128",
+  "scalar": {
+   "cycles": 233333,
+   "bundles": 232719,
+   "bank_conflicts": 0,
+   "branch_penalties": 164,
+   "icache_misses": 0,
+   "dcache_misses": 16,
+   "instructions": 232719,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 155973,
+   "bundles": 155138,
+   "bank_conflicts": 0,
+   "branch_penalties": 166,
+   "icache_misses": 0,
+   "dcache_misses": 16,
+   "instructions": 155138,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 121635,
+   "bundles": 91970,
+   "bank_conflicts": 0,
+   "branch_penalties": 4258,
+   "icache_misses": 0,
+   "dcache_misses": 16,
+   "instructions": 155138,
+   "static_fallback_bundles": 3
+  },
+  "rtl": {
+   "scalar_cycles": 233653,
+   "vliw_cycles_rv32gc": 156130,
+   "starbug_cycles": 121898
+  }
+ },
+ {
+  "benchmark": "lms_f32_taps256_n1",
+  "scalar": {
+   "cycles": 5505,
+   "bundles": 5418,
+   "bank_conflicts": 0,
+   "branch_penalties": 35,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 5418,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 3687,
+   "bundles": 3346,
+   "bank_conflicts": 0,
+   "branch_penalties": 38,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 3346,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 3068,
+   "bundles": 2277,
+   "bank_conflicts": 0,
+   "branch_penalties": 99,
+   "icache_misses": 1,
+   "dcache_misses": 0,
+   "instructions": 3346,
+   "static_fallback_bundles": 5
+  },
+  "rtl": {
+   "scalar_cycles": 5737,
+   "vliw_cycles_rv32gc": 3963,
+   "starbug_cycles": 3619
+  }
+ },
+ {
+  "benchmark": "lms_f32_taps256_n128",
+  "scalar": {
+   "cycles": 497306,
+   "bundles": 496020,
+   "bank_conflicts": 0,
+   "branch_penalties": 301,
+   "icache_misses": 1,
+   "dcache_misses": 30,
+   "instructions": 496020,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 334704,
+   "bundles": 329229,
+   "bank_conflicts": 0,
+   "branch_penalties": 303,
+   "icache_misses": 1,
+   "dcache_misses": 30,
+   "instructions": 329229,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 286534,
+   "bundles": 219736,
+   "bank_conflicts": 0,
+   "branch_penalties": 8354,
+   "icache_misses": 1,
+   "dcache_misses": 30,
+   "instructions": 329229,
+   "static_fallback_bundles": 5
+  },
+  "rtl": {
+   "scalar_cycles": 497726,
+   "vliw_cycles_rv32gc": 343021,
+   "starbug_cycles": 295351
+  }
+ },
+ {
+  "benchmark": "rfft2048_f32",
+  "scalar": {
+   "cycles": 139704,
+   "bundles": 123391,
+   "bank_conflicts": 0,
+   "branch_penalties": 101,
+   "icache_misses": 38,
+   "dcache_misses": 639,
+   "instructions": 123391,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 141824,
+   "bundles": 126968,
+   "bank_conflicts": 0,
+   "branch_penalties": 97,
+   "icache_misses": 49,
+   "dcache_misses": 635,
+   "instructions": 126968,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 95248,
+   "bundles": 67457,
+   "bank_conflicts": 0,
+   "branch_penalties": 1483,
+   "icache_misses": 49,
+   "dcache_misses": 635,
+   "instructions": 126968,
+   "static_fallback_bundles": 26
+  },
+  "rtl": {
+   "scalar_cycles": 128281,
+   "vliw_cycles_rv32gc": 144424,
+   "starbug_cycles": 98300
+  }
+ },
+ {
+  "benchmark": "rfft512_f32",
+  "scalar": {
+   "cycles": 29335,
+   "bundles": 25691,
+   "bank_conflicts": 0,
+   "branch_penalties": 72,
+   "icache_misses": 46,
+   "dcache_misses": 133,
+   "instructions": 25691,
+   "static_fallback_bundles": 0
+  },
+  "vliw_rv32gc": {
+   "cycles": 30398,
+   "bundles": 26446,
+   "bank_conflicts": 0,
+   "branch_penalties": 73,
+   "icache_misses": 60,
+   "dcache_misses": 136,
+   "instructions": 26446,
+   "static_fallback_bundles": 0
+  },
+  "starbug": {
+   "cycles": 26194,
+   "bundles": 20303,
+   "bank_conflicts": 0,
+   "branch_penalties": 346,
+   "icache_misses": 60,
+   "dcache_misses": 136,
+   "instructions": 26446,
+   "static_fallback_bundles": 15
+  },
+  "rtl": {
+   "scalar_cycles": 27739,
+   "vliw_cycles_rv32gc": 28988,
+   "starbug_cycles": 25422
+  }
+ }
+]

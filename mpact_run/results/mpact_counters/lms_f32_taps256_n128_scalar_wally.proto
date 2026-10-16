@@ -1,0 +1,905 @@
+name: "RiscV32Sim"
+configuration {
+  name: "dcache"
+  string_value: ""
+}
+configuration {
+  name: "icache"
+  string_value: ""
+}
+statistics {
+  name: "num_Add"
+  uint64_value: 22
+}
+statistics {
+  name: "num_AddHint1"
+  uint64_value: 0
+}
+statistics {
+  name: "num_AddHint2"
+  uint64_value: 0
+}
+statistics {
+  name: "num_AddHint3"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Addi"
+  uint64_value: 317
+}
+statistics {
+  name: "num_AddiHint1"
+  uint64_value: 0
+}
+statistics {
+  name: "num_AddiHint2"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amoaddw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amoandw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amomaxuw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amomaxw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amominuw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amominw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amoorw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amoswapw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Amoxorw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_And"
+  uint64_value: 85
+}
+statistics {
+  name: "num_AndHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Andi"
+  uint64_value: 172
+}
+statistics {
+  name: "num_AndiHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Auipc"
+  uint64_value: 42
+}
+statistics {
+  name: "num_AuipcHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Beq"
+  uint64_value: 798
+}
+statistics {
+  name: "num_Bge"
+  uint64_value: 57
+}
+statistics {
+  name: "num_Bgeu"
+  uint64_value: 99
+}
+statistics {
+  name: "num_Blt"
+  uint64_value: 22
+}
+statistics {
+  name: "num_Bltu"
+  uint64_value: 660
+}
+statistics {
+  name: "num_Bne"
+  uint64_value: 197197
+}
+statistics {
+  name: "num_Cadd"
+  uint64_value: 130
+}
+statistics {
+  name: "num_CaddHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Caddi"
+  uint64_value: 595993
+}
+statistics {
+  name: "num_Caddi16sp"
+  uint64_value: 27
+}
+statistics {
+  name: "num_Caddi4spn"
+  uint64_value: 2
+}
+statistics {
+  name: "num_CaddiHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cand"
+  uint64_value: 101
+}
+statistics {
+  name: "num_Candi"
+  uint64_value: 10
+}
+statistics {
+  name: "num_Cbeqz"
+  uint64_value: 148
+}
+statistics {
+  name: "num_Cbnez"
+  uint64_value: 782
+}
+statistics {
+  name: "num_Cebreak"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfld"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfldsp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cflw"
+  uint64_value: 197760
+}
+statistics {
+  name: "num_Cflwsp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfsd"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfsdsp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfsw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cfswsp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cj"
+  uint64_value: 58
+}
+statistics {
+  name: "num_Cjal"
+  uint64_value: 19
+}
+statistics {
+  name: "num_Cjalr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cjr"
+  uint64_value: 73
+}
+statistics {
+  name: "num_Cli"
+  uint64_value: 204
+}
+statistics {
+  name: "num_CliHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Clui"
+  uint64_value: 35
+}
+statistics {
+  name: "num_CluiHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Clw"
+  uint64_value: 267
+}
+statistics {
+  name: "num_Clwsp"
+  uint64_value: 194
+}
+statistics {
+  name: "num_Cmv"
+  uint64_value: 2582
+}
+statistics {
+  name: "num_CmvHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cnop"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CnopHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cor"
+  uint64_value: 207
+}
+statistics {
+  name: "num_Cslli"
+  uint64_value: 206
+}
+statistics {
+  name: "num_CslliHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csrai"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csrli"
+  uint64_value: 161
+}
+statistics {
+  name: "num_Csrrc"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrcNr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrcNw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csrrci"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrciNr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrciNw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csrrs"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrsNr"
+  uint64_value: 1
+}
+statistics {
+  name: "num_CsrrsNw"
+  uint64_value: 3
+}
+statistics {
+  name: "num_Csrrsi"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrsiNr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrsiNw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csrrw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrwNr"
+  uint64_value: 3
+}
+statistics {
+  name: "num_Csrrwi"
+  uint64_value: 0
+}
+statistics {
+  name: "num_CsrrwiNr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Csub"
+  uint64_value: 49
+}
+statistics {
+  name: "num_Csw"
+  uint64_value: 4
+}
+statistics {
+  name: "num_Cswsp"
+  uint64_value: 219
+}
+statistics {
+  name: "num_Cunimp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Cxor"
+  uint64_value: 1
+}
+statistics {
+  name: "num_Div"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Divu"
+  uint64_value: 30
+}
+statistics {
+  name: "num_Ebreak"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Ecall"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FaddD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FaddS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FclassD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FclassS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpeqD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpeqS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpleD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpleS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpltD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcmpltS"
+  uint64_value: 1
+}
+statistics {
+  name: "num_FcvtDs"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtDw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtDwu"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtSd"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtSw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtSwu"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtWd"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtWs"
+  uint64_value: 1
+}
+statistics {
+  name: "num_FcvtWud"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FcvtWus"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FdivD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FdivS"
+  uint64_value: 1
+}
+statistics {
+  name: "num_Fence"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint1"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint2"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint3"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint4"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint5"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint6"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceHint7"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FenceTso"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Fencei"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Fld"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Flw"
+  uint64_value: 196994
+}
+statistics {
+  name: "num_FmaddD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmaddS"
+  uint64_value: 196864
+}
+statistics {
+  name: "num_FmaxD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmaxS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FminD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FminS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmsubD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmsubS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmulD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FmulS"
+  uint64_value: 385
+}
+statistics {
+  name: "num_FmvWx"
+  uint64_value: 806
+}
+statistics {
+  name: "num_FmvXw"
+  uint64_value: 131
+}
+statistics {
+  name: "num_FnmaddD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FnmaddS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FnmsubD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FnmsubS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Fsd"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjnD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjnS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjxD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsgnjxS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsqrtD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsqrtS"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsubD"
+  uint64_value: 0
+}
+statistics {
+  name: "num_FsubS"
+  uint64_value: 512
+}
+statistics {
+  name: "num_Fsw"
+  uint64_value: 100221
+}
+statistics {
+  name: "num_Hint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_J"
+  uint64_value: 1
+}
+statistics {
+  name: "num_Jal"
+  uint64_value: 53
+}
+statistics {
+  name: "num_Jalr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Jr"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Lb"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Lbu"
+  uint64_value: 78
+}
+statistics {
+  name: "num_Lh"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Lhu"
+  uint64_value: 3
+}
+statistics {
+  name: "num_Lrw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Lui"
+  uint64_value: 167
+}
+statistics {
+  name: "num_LuiHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Lw"
+  uint64_value: 55
+}
+statistics {
+  name: "num_Mret"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Mul"
+  uint64_value: 90
+}
+statistics {
+  name: "num_Mulh"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Mulhsu"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Mulhu"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Nop"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Or"
+  uint64_value: 36
+}
+statistics {
+  name: "num_OrHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Ori"
+  uint64_value: 1
+}
+statistics {
+  name: "num_OriHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Rem"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Remu"
+  uint64_value: 30
+}
+statistics {
+  name: "num_Sb"
+  uint64_value: 32
+}
+statistics {
+  name: "num_Scw"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SfenceVmaNn"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SfenceVmaNz"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SfenceVmaZn"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SfenceVmaZz"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sh"
+  uint64_value: 1
+}
+statistics {
+  name: "num_Sll"
+  uint64_value: 60
+}
+statistics {
+  name: "num_SllHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Slli"
+  uint64_value: 142
+}
+statistics {
+  name: "num_SlliHint1"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SlliHint2"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SlliSemihost"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Slt"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SltHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Slti"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SltiHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sltiu"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SltiuHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sltu"
+  uint64_value: 46
+}
+statistics {
+  name: "num_SltuHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sra"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SraHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Srai"
+  uint64_value: 6
+}
+statistics {
+  name: "num_SraiHint1"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SraiHint2"
+  uint64_value: 0
+}
+statistics {
+  name: "num_SraiSemihost"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sret"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Srl"
+  uint64_value: 54
+}
+statistics {
+  name: "num_SrlHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Srli"
+  uint64_value: 198
+}
+statistics {
+  name: "num_SrliHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sub"
+  uint64_value: 59
+}
+statistics {
+  name: "num_SubHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Sw"
+  uint64_value: 676
+}
+statistics {
+  name: "num_Unimp"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Uret"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Wfi"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Xor"
+  uint64_value: 18
+}
+statistics {
+  name: "num_XorHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_Xori"
+  uint64_value: 5
+}
+statistics {
+  name: "num_XoriHint"
+  uint64_value: 0
+}
+statistics {
+  name: "num_cycles"
+  uint64_value: 1496467
+}
+statistics {
+  name: "num_instructions"
+  uint64_value: 1496467
+}
+statistics {
+  name: "num_none"
+  uint64_value: 0
+}
+statistics {
+  name: "simulation_time_sec"
+  double_value: 0.1
+}

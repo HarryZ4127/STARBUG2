@@ -1,0 +1,79 @@
+diff --git a/riscv/riscv_top.cc b/riscv/riscv_top.cc
+index 3f6dbf1..f509b1d 100644
+--- a/riscv/riscv_top.cc
++++ b/riscv/riscv_top.cc
+@@ -14,6 +14,9 @@
+ 
+ #include "riscv/riscv_top.h"
+ 
++// STARBUG_TRACE: per-instruction pc log, set by rv32g_sim when the env var is present.
++FILE* g_starbug_trace = nullptr;
++
+ #include <algorithm>
+ #include <cstdint>
+ #include <cstring>
+@@ -393,6 +396,7 @@ absl::Status RiscVTop::Run() {
+     while (!halted_) {
+       auto* inst = rv_decode_cache_->GetDecodedInstruction(pc);
+       SetPc(pc);
++      if (g_starbug_trace) fprintf(g_starbug_trace, "p%lx\n", (unsigned long)pc);  // STARBUG_TRACE
+       next_pc = pc + inst->size();
+       bool executed = false;
+       if (icache_) ICacheFetch(pc);
+diff --git a/riscv/rv32g_sim.cc b/riscv/rv32g_sim.cc
+index 388e435..ff5a194 100644
+--- a/riscv/rv32g_sim.cc
++++ b/riscv/rv32g_sim.cc
+@@ -64,6 +64,38 @@ using ::mpact::sim::generic::Instruction;
+ using ::mpact::sim::proto::ComponentData;
+ using ::mpact::sim::proto::ComponentValueEntry;
+ using ::mpact::sim::riscv::RiscV32Decoder;
++
++// STARBUG_TRACE: data-address trace + 16550 UART stub.
++extern FILE* g_starbug_trace;
++class StarbugTraceMemory : public mpact::sim::util::MemoryInterface {
++ public:
++  using DataBuffer = mpact::sim::generic::DataBuffer;
++  using Instruction = mpact::sim::generic::Instruction;
++  using ReferenceCount = mpact::sim::generic::ReferenceCount;
++  StarbugTraceMemory(mpact::sim::util::MemoryInterface* m,
++                     mpact::sim::generic::DataBufferFactory* f) : m_(m) {
++    lsr_ = f->Allocate<uint8_t>(1);
++    lsr_->Set<uint8_t>(0, 0x60);
++  }
++  void Load(uint64_t a, DataBuffer* db, Instruction* inst, ReferenceCount* ctx) override {
++    if (g_starbug_trace) fprintf(g_starbug_trace, "l%lx %d\n", (unsigned long)a, (int)db->size<uint8_t>());
++    if (a >= 0x10000000 && a < 0x10000008) m_->Store(0x10000005, lsr_);
++    m_->Load(a, db, inst, ctx);
++  }
++  void Load(DataBuffer* a, DataBuffer* mask, int el, DataBuffer* db, Instruction* inst,
++            ReferenceCount* ctx) override { m_->Load(a, mask, el, db, inst, ctx); }
++  void Store(uint64_t a, DataBuffer* db) override {
++    if (g_starbug_trace) fprintf(g_starbug_trace, "s%lx %d\n", (unsigned long)a, (int)db->size<uint8_t>());
++    if (a == 0x10000000) { fputc(db->Get<uint8_t>(0), stdout); fflush(stdout); }
++    m_->Store(a, db);
++  }
++  void Store(DataBuffer* a, DataBuffer* mask, int el, DataBuffer* db) override {
++    m_->Store(a, mask, el, db);
++  }
++ private:
++  mpact::sim::util::MemoryInterface* m_;
++  DataBuffer* lsr_;
++};
+ using ::mpact::sim::riscv::RiscV32GBitmanipDecoder;
+ using ::mpact::sim::riscv::RiscV32HtifSemiHost;
+ using ::mpact::sim::riscv::RiscVArmSemihost;
+@@ -266,6 +298,13 @@ int main(int argc, char** argv) {
+   if (memory_watcher != nullptr) {
+     memory_interface = memory_watcher;
+   }
++  // STARBUG_TRACE: wrap the data-side memory (instruction fetch stays on `memory`).
++  mpact::sim::generic::DataBufferFactory starbug_db_factory;
++  if (const char* tp = getenv("STARBUG_TRACE")) {
++    g_starbug_trace = fopen(tp, "w");
++    if (g_starbug_trace) setvbuf(g_starbug_trace, nullptr, _IOFBF, 1 << 22);
++  }
++  memory_interface = new StarbugTraceMemory(memory_interface, &starbug_db_factory);
+   // Set up architectural state and decoder.
+   RiscVState rv_state("RiscV32", RiscVXlen::RV32, memory_interface,
+                       atomic_memory);

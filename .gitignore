@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.elf
+/traces/
+/ex/
+~$*
+.DS_Store

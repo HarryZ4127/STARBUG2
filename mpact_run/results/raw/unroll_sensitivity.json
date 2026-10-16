@@ -1,0 +1,290 @@
+{
+ "fir_f32_taps256_n128": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.4928226084092984,
+   "+ zero-overhead loops": 1.4992971880003307,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1965757615751016,
+   "+ 2 LS, conflict-free": 1.1993313731503028,
+   "sb1_cycles": 199462
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.105982905982906,
+   "+ zero-overhead loops": 1.109214884083382,
+   "+ 1 LS + 1 load-only, conflict-free": 1.6264640347369022,
+   "+ 2 LS, conflict-free": 1.6383831795422719,
+   "sb1_cycles": 85404
+  }
+ },
+ "fir_f32_taps256_n1": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.4607007575757576,
+   "+ zero-overhead loops": 1.7034787410270569,
+   "+ 1 LS + 1 load-only, conflict-free": 1.0904913396960056,
+   "+ 2 LS, conflict-free": 1.1989895064127478,
+   "sb1_cycles": 3085
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.063157894736842,
+   "+ zero-overhead loops": 1.1328731665228646,
+   "+ 1 LS + 1 load-only, conflict-free": 1.4118279569892473,
+   "+ 2 LS, conflict-free": 1.6371571072319202,
+   "sb1_cycles": 1313
+  }
+ },
+ "lms_f32_taps256_n128": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.3589637977241773,
+   "+ zero-overhead loops": 1.4977559475711877,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1522908352619594,
+   "+ 2 LS, conflict-free": 1.2486709743832993,
+   "sb1_cycles": 494902
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0891092944868468,
+   "+ zero-overhead loops": 1.1159207422193993,
+   "+ 1 LS + 1 load-only, conflict-free": 1.500854244527496,
+   "+ 2 LS, conflict-free": 1.7209361307644544,
+   "sb1_cycles": 196777
+  }
+ },
+ "lms_f32_taps256_n1": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.3709146186977452,
+   "+ zero-overhead loops": 1.6051616730940375,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1042857142857143,
+   "+ 2 LS, conflict-free": 1.2331358249772106,
+   "sb1_cycles": 5411
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0570048309178743,
+   "+ zero-overhead loops": 1.1278350515463917,
+   "+ 1 LS + 1 load-only, conflict-free": 1.4161812297734628,
+   "+ 2 LS, conflict-free": 1.6987577639751552,
+   "sb1_cycles": 2188
+  }
+ },
+ "biquad_cascade_df2T_f32_sos3_n128": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.1889784247465558,
+   "+ zero-overhead loops": 1.1998950682056664,
+   "+ 1 LS + 1 load-only, conflict-free": 1.0028502521376892,
+   "+ 2 LS, conflict-free": 1.0035103115401491,
+   "sb1_cycles": 4574
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0440763615946098,
+   "+ zero-overhead loops": 1.0526464760826493,
+   "+ 1 LS + 1 load-only, conflict-free": 1.003507825148408,
+   "+ 2 LS, conflict-free": 1.0043208209559817,
+   "sb1_cycles": 3719
+  }
+ },
+ "biquad_cascade_df2T_f32_sos3_n1": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0416666666666667,
+   "+ zero-overhead loops": 1.0,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1494252873563218,
+   "+ 2 LS, conflict-free": 1.1904761904761905,
+   "sb1_cycles": 100
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0341880341880343,
+   "+ zero-overhead loops": 1.0,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1203703703703705,
+   "+ 2 LS, conflict-free": 1.1523809523809523,
+   "sb1_cycles": 121
+  }
+ },
+ "dct4_2048_f32": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.1549341828679267,
+   "+ zero-overhead loops": 1.2569636148265642,
+   "+ 1 LS + 1 load-only, conflict-free": 1.0708806701287676,
+   "+ 2 LS, conflict-free": 1.1614827759535118,
+   "sb1_cycles": 247246
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0433452188006482,
+   "+ zero-overhead loops": 1.0709290177472268,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1595481007550867,
+   "+ 2 LS, conflict-free": 1.2681812092700724,
+   "sb1_cycles": 160936
+  }
+ },
+ "dct4_512_f32": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.1803971176218122,
+   "+ zero-overhead loops": 1.313170658155957,
+   "+ 1 LS + 1 load-only, conflict-free": 1.083454281567489,
+   "+ 2 LS, conflict-free": 1.1868314065729406,
+   "sb1_cycles": 52255
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0466180081396521,
+   "+ zero-overhead loops": 1.087664720892027,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1885790679908328,
+   "+ 2 LS, conflict-free": 1.3502712085050987,
+   "sb1_cycles": 31117
+  }
+ },
+ "rfft2048_f32": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0587137579059427,
+   "+ zero-overhead loops": 1.098501682845373,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1069310042295757,
+   "+ 2 LS, conflict-free": 1.1628607587971498,
+   "sb1_cycles": 84533
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0402246310565495,
+   "+ zero-overhead loops": 1.0676148633554248,
+   "+ 1 LS + 1 load-only, conflict-free": 1.159294897711652,
+   "+ 2 LS, conflict-free": 1.2384037315366676,
+   "sb1_cycles": 71685
+  }
+ },
+ "rfft512_f32": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0602523287348191,
+   "+ zero-overhead loops": 1.10677580158779,
+   "+ 1 LS + 1 load-only, conflict-free": 1.122947236965345,
+   "+ 2 LS, conflict-free": 1.1677922077922078,
+   "sb1_cycles": 17984
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0383573066499896,
+   "+ zero-overhead loops": 1.0714900329843682,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1419946503630112,
+   "+ 2 LS, conflict-free": 1.2520318391286134,
+   "sb1_cycles": 14943
+  }
+ },
+ "matmult-int": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.2981133526934245,
+   "+ zero-overhead loops": 1.3370176689644244,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1421464528956387,
+   "+ 2 LS, conflict-free": 1.1499395199073206,
+   "sb1_cycles": 134996
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0420868394479974,
+   "+ zero-overhead loops": 1.0573184891742367,
+   "+ 1 LS + 1 load-only, conflict-free": 1.626105590453581,
+   "+ 2 LS, conflict-free": 1.6757815882913312,
+   "sb1_cycles": 77401
+  }
+ },
+ "edn": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.2621037691215897,
+   "+ zero-overhead loops": 1.3007133182844244,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1202756089215167,
+   "+ 2 LS, conflict-free": 1.140768779993348,
+   "sb1_cycles": 72027
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.055343199712503,
+   "+ zero-overhead loops": 1.0747962069539179,
+   "+ 1 LS + 1 load-only, conflict-free": 1.4046004000347856,
+   "+ 2 LS, conflict-free": 1.4699217327994176,
+   "sb1_cycles": 32303
+  }
+ },
+ "dwconv3x3_i8": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0596679349705984,
+   "+ zero-overhead loops": 1.1050500081980652,
+   "+ 1 LS + 1 load-only, conflict-free": 1.3915224842053102,
+   "+ 2 LS, conflict-free": 1.391881705440765,
+   "sb1_cycles": 134794
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0605432138156583,
+   "+ zero-overhead loops": 1.1043049245413092,
+   "+ 1 LS + 1 load-only, conflict-free": 1.398613536428857,
+   "+ 2 LS, conflict-free": 1.4707899598438001,
+   "sb1_cycles": 132955
+  }
+ },
+ "fir_q15": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.3147769373263354,
+   "+ zero-overhead loops": 1.3230999262107266,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1366586037200768,
+   "+ 2 LS, conflict-free": 1.1366586037200768,
+   "sb1_cycles": 136274
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.1020117610646858,
+   "+ zero-overhead loops": 1.0943794438866463,
+   "+ 1 LS + 1 load-only, conflict-free": 1.4427456171155353,
+   "+ 2 LS, conflict-free": 1.4430184804928132,
+   "sb1_cycles": 53409
+  }
+ },
+ "crc32": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.3135846645367413,
+   "+ zero-overhead loops": 1.0866228302006469,
+   "+ 1 LS + 1 load-only, conflict-free": 1.000029187138201,
+   "+ 2 LS, conflict-free": 1.0416083986947975,
+   "sb1_cycles": 102788
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.2322898403308484,
+   "+ zero-overhead loops": 1.0112689050710073,
+   "+ 1 LS + 1 load-only, conflict-free": 1.0000325839035515,
+   "+ 2 LS, conflict-free": 1.046688493281495,
+   "sb1_cycles": 92073
+  }
+ },
+ "nettle-sha256": {
+  "scalar": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0096494442408697,
+   "+ zero-overhead loops": 1.0108841873547756,
+   "+ 1 LS + 1 load-only, conflict-free": 1.1587579729445574,
+   "+ 2 LS, conflict-free": 1.181152430964884,
+   "sb1_cycles": 33064
+  },
+  "unroll": {
+   "SB1 today: 4-wide, 1 mem op (lane 0), no predictor": 1.0,
+   "+ gshare predictor (as RV32GC)": 1.0058316594310892,
+   "+ zero-overhead loops": 1.0015484869991613,
+   "+ 1 LS + 1 load-only, conflict-free": 1.218876369204193,
+   "+ 2 LS, conflict-free": 1.238718429557515,
+   "sb1_cycles": 31046
+  }
+ }
+}
