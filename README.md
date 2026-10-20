@@ -20,7 +20,7 @@ This repo holds everything produced on the analysis side so far:
 
 | If you want… | Read |
 |---|---|
-| Context for an AI/cloud session picking this up | [`CLAUDE.md`](CLAUDE.md) |
+| Context for an AI/cloud session picking this up | [`CLAUDE.md`](CLAUDE.md), then [`HANDOFF.md`](HANDOFF.md) (current task) |
 | What happened, in order | [`docs/00-history.md`](docs/00-history.md) |
 | **The reasoning behind every finding and decision** | [`docs/01-design-rationale.md`](docs/01-design-rationale.md) |
 | How the current RTL fetches/decodes bundles, and its suspected bugs | [`docs/03-rtl-analysis.md`](docs/03-rtl-analysis.md) |

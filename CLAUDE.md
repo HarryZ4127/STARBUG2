@@ -75,6 +75,9 @@ why. Nothing here modifies the RTL.
   with a date. Also update `docs/01-design-rationale.md` if it changes a decision.
 
 ## Where to continue
+**Start with [`HANDOFF.md`](HANDOFF.md):** the current task (build Leo's compiler, GCC baseline,
+compiler-method study), with a step-by-step plan and the gotchas found so far.
+
 `docs/06-open-questions.md` has the prioritised list. The top items:
 1. `bundle_check.py` now enforces the lane-0 rule (done 10-16). Still to do: make MPACT's VLIW
    decoder enforce it, re-measure the dp kernel with a legal schedule, and report the two latent
